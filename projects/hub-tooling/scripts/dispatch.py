@@ -194,6 +194,7 @@ ROLE_MODEL: dict[str, str] = {
     "dev": "sonnet",
     "rev": "opus",
     "bkf": "opus",
+    "gat": "opus",
     "mnt": "sonnet",
     # NOTE: `docs` is intentionally absent until it is dispatched (Lockstep
     # S-6). When added, it must equal the `model:` in the generated docs
