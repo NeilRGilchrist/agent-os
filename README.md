@@ -5,8 +5,8 @@ A workspace for running spec-driven agent crews across multiple projects, with a
 ## Try it in 5 minutes
 
 ```bash
-git clone https://github.com/NeilRGilchrist/cos-agent-hub.git
-cd cos-agent-hub
+git clone https://github.com/NeilRGilchrist/agent-os.git
+cd agent-os
 pip install pyyaml
 
 # Bootstrap your first project
@@ -105,7 +105,7 @@ The slash commands wrap these so you rarely call them directly.
 - `/patterns [tag]` — Synthesize patterns from parked ideas + active FRs.
 - `/hub-status` — Workspace overview.
 
-Project-level slash commands (`/architect`, `/developer`, `/reviewer`, `/status`, `/gate`, `/escalate`) are bootstrapped for both harnesses under `template/.claude/commands/` and `template/.cursor/commands/`, with canonical command bodies in `template/.agent-team/commands/`.
+Project-level slash commands (`/architect`, `/orchestrator`, `/developer`, `/reviewer`, `/status`, `/gate`, `/escalate`) are bootstrapped for both harnesses under `template/.claude/commands/` and `template/.cursor/commands/`, with canonical command bodies in `template/.agent-team/commands/`.
 
 ## Portability model
 
