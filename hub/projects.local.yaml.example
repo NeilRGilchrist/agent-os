@@ -1,0 +1,22 @@
+# Per-machine registry overlay: copy to hub/projects.local.yaml (gitignored).
+#
+# Same schema as projects.yaml. Use it for projects that must not appear in the
+# shared registry at all (proprietary work, or a checkout only this machine
+# has). scripts/hub-index.py merges it over projects.yaml:
+#
+#   - A name that exists only here is a *local-only* project. It is indexed into
+#     hub/FR-INDEX.local.json (gitignored), never into the committed
+#     hub/FR-INDEX.json, so the shared index stays reproducible everywhere.
+#   - A name that also exists in projects.yaml re-points that shared project on
+#     this machine (e.g. a different checkout path). Its FRs stay in the shared
+#     index.
+#
+# Consumers that want the full local picture read FR-INDEX.local.json when it
+# exists and fall back to FR-INDEX.json otherwise.
+
+projects:
+- name: example-private-client
+  path: C:/Users/me/code/example-private-client   # absolute or hub-relative
+  created: '2026-01-01'
+  stack: python
+  private: false   # false = its FRs are indexed (into FR-INDEX.local.json only)

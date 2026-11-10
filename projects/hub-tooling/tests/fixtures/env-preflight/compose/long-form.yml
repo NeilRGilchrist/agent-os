@@ -1,0 +1,6 @@
+services:
+  db:
+    image: synthetic/postgres:latest
+    ports:
+      - published: 5433
+        target: 5432

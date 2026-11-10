@@ -1,0 +1,38 @@
+AGENTS.override.md
+CLAUDE.local.md
+**/AGENTS.override.md
+**/CLAUDE.local.md
+
+# Local Claude Code settings (per-machine; never committed)
+/.claude/settings.local.json
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+.bootstrap-venv/
+.ruff_cache/
+
+# Out-of-tree projects with their own git history
+# (registered in hub/projects.yaml; not tracked by the hub repo)
+/ac-pmi-main/
+/projects/ns-sltc-pathways-integration/
+/projects/prototypes/neilgilchrist-nsh-eru-and-finrec-module/
+/projects/ai-productivity-toolkit/
+# Zip snapshot of the above; regenerable, never committed
+/projects/ns-sltc-pathways-integration.zip
+
+# Sandbox leftover from hub promotion — empty dir that resists removal
+/agent-team-template/
+
+# Out-of-tree prototype with its own git history
+/projects/prototypes/prototypes/
+
+# Local user data (never committed)
+/mnt/user-data/
+
+# Sensitive working data — customer names / internal notes / scratch; never committed
+/hub/Internal Meeting Notes/
+/hub/tmp/
+/scripts/gen-session-hub.js
+/scripts/session-hub-output.html

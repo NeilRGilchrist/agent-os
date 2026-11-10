@@ -1,0 +1,534 @@
+#!/usr/bin/env python3
+"""
+hub-index.py — Build a denormalized cross-project FR index.
+
+Reads hub/projects.yaml, walks each (non-private) project's specs/ directory,
+parses every FR's frontmatter, and writes hub/FR-INDEX.json.
+
+An optional, gitignored hub/projects.local.yaml (same schema) overlays the
+shared registry for projects that must not appear in it at all: proprietary
+work, or a checkout only this machine has. Projects registered only there are
+indexed into hub/FR-INDEX.local.json (also gitignored) together with the
+shared projects, so hub/FR-INDEX.json stays reproducible from projects.yaml
+alone. An overlay entry whose name matches a shared entry re-points that shared
+project locally (its FRs stay in the shared index). Consumers that want the
+full picture read FR-INDEX.local.json when it exists, else FR-INDEX.json.
+
+The Chief of Staff slash command, /patterns, and the proactive-overlap check
+in /architect query this file rather than walking each project. Re-running is
+cheap; run on every relevant slash-command invocation.
+
+By default, .claude/worktrees/ directories are skipped to prevent unbounded
+index growth from ephemeral worktrees. Pass --include-worktrees to restore
+the old behavior and index worktree specs as well.
+
+A partial checkout -- a git worktree, or CI where a gitlink is never populated
+-- sees registered projects as empty directories, so a rebuild there would
+silently gut the index. The indexer therefore refuses to write (and fails
+--check) when the rebuild would lose FRs relative to the existing index. Pass
+--allow-shrink when the loss is intended: deleted FRs, or an archived project.
+
+Usage:
+  python3 scripts/hub-index.py                       # rebuild (main branches only)
+  python3 scripts/hub-index.py --include-worktrees    # include .claude/worktrees/*
+  python3 scripts/hub-index.py --check                # validate without writing
+  python3 scripts/hub-index.py --incremental           # only re-parse changed files
+  python3 scripts/hub-index.py --allow-shrink          # permit an index that loses FRs
+"""
+
+from __future__ import annotations
+
+import argparse
+import datetime as dt
+import json
+import re
+import subprocess
+import sys
+from pathlib import Path
+
+try:
+    import yaml
+except ImportError:
+    print("ERROR: pyyaml not installed. Run: pip install pyyaml", file=sys.stderr)
+    sys.exit(2)
+
+# _console is a sibling module providing encoding-safe console output; FR titles
+# routinely contain dashes and arrows that a Windows console cannot encode.
+from _console import configure_stdio, safe_print
+
+
+HUB_ROOT = Path(__file__).resolve().parent.parent
+PROJECTS_YAML = HUB_ROOT / "hub" / "projects.yaml"
+PROJECTS_LOCAL_YAML = HUB_ROOT / "hub" / "projects.local.yaml"
+INDEX_JSON = HUB_ROOT / "hub" / "FR-INDEX.json"
+INDEX_LOCAL_JSON = HUB_ROOT / "hub" / "FR-INDEX.local.json"
+
+FRONTMATTER_PATTERN = re.compile(r"^---\s*\n(.*?)\n---\s*\n", re.DOTALL)
+
+
+def resolve_project_path(entry: dict) -> Path:
+    raw = entry["path"]
+    p = Path(raw)
+    if not p.is_absolute():
+        p = (HUB_ROOT / p).resolve()
+    return p
+
+
+def parse_fr_file(path: Path, project_name: str) -> dict | None:
+    try:
+        text = path.read_text(encoding="utf-8")
+    except OSError:
+        return None
+    m = FRONTMATTER_PATTERN.match(text)
+    if not m:
+        return None
+    try:
+        meta = yaml.safe_load(m.group(1)) or {}
+    except yaml.YAMLError:
+        return None
+    fr_id = str(meta.get("id", ""))
+    if not fr_id.startswith("FR-"):
+        return None
+    return {
+        "project": project_name,
+        "fr_id": fr_id,
+        "title": str(meta.get("title", "")),
+        "status": str(meta.get("status", "")),
+        "owner": str(meta.get("owner", "")),
+        "tags": list(meta.get("tags") or []),
+        "depends_on": list(meta.get("depends_on") or []),
+        "derived_from": meta.get("derived_from"),
+        "pattern": meta.get("pattern"),
+        "created": str(meta.get("created", "")),
+        "updated": str(meta.get("updated", "")),
+        # POSIX separators: FR-INDEX.json is committed and read on every
+        # platform, and `git_tracked_specs` below already normalizes the same
+        # way. str() on a Windows Path would write `projects\foo\specs\...`.
+        "rel_path": (
+            path.relative_to(HUB_ROOT).as_posix()
+            if path.is_relative_to(HUB_ROOT)
+            else path.as_posix()
+        ),
+    }
+
+
+def git_tracked_specs(repo_path: Path) -> set[str] | None:
+    """Return the set of `specs/FR-*.md` paths tracked in HEAD, or None if not a git repo."""
+    try:
+        result = subprocess.run(
+            ["git", "-C", str(repo_path), "ls-tree", "-r", "--name-only", "HEAD", "--", "specs"],
+            capture_output=True,
+            text=True,
+            timeout=10,
+        )
+    except (FileNotFoundError, subprocess.TimeoutExpired):
+        return None
+    if result.returncode != 0:
+        return None
+    return {line.strip().replace("\\", "/") for line in result.stdout.splitlines() if line.strip()}
+
+
+def iter_worktrees(project_path: Path) -> list[tuple[str, Path]]:
+    """List (branch_label, worktree_path) under <project>/.claude/worktrees/*."""
+    wt_root = project_path / ".claude" / "worktrees"
+    if not wt_root.exists():
+        return []
+    out: list[tuple[str, Path]] = []
+    for wt_dir in sorted(p for p in wt_root.iterdir() if p.is_dir()):
+        out.append((f"claude/{wt_dir.name}", wt_dir))
+    return out
+
+
+def index_specs_dir(
+    specs_dir: Path,
+    project_name: str,
+    branch: str,
+    tracked: set[str] | None,
+    worktree_path: Path | None,
+    ahead_tracked: set[str] | None,
+) -> list[dict]:
+    """Walk specs/FR-*.md and annotate each record with branch + commit status."""
+    records: list[dict] = []
+    for fr_path in sorted(specs_dir.glob("FR-*.md")):
+        record = parse_fr_file(fr_path, project_name=project_name)
+        if record is None:
+            continue
+        rel_to_repo = f"specs/{fr_path.name}"
+        if branch == "main":
+            committed = (rel_to_repo in tracked) if tracked is not None else None
+            ahead_of_main = False
+        else:
+            committed = (
+                (ahead_tracked is not None and rel_to_repo in ahead_tracked)
+            )
+            ahead_of_main = bool(committed)
+        record["branch"] = branch
+        record["committed"] = committed
+        record["ahead_of_main"] = ahead_of_main
+        record["worktree_path"] = str(worktree_path) if worktree_path is not None else None
+        records.append(record)
+    return records
+
+
+def _load_registry(path: Path, label: str) -> tuple[list[dict], list[str]]:
+    """Load one registry file; every entry must carry `name` and `path`."""
+    try:
+        data = yaml.safe_load(path.read_text(encoding="utf-8")) or {}
+    except yaml.YAMLError as e:
+        return [], [f"{label} is malformed: {e}"]
+    entries = list(data.get("projects") or [])
+    for entry in entries:
+        if not isinstance(entry, dict) or "name" not in entry or "path" not in entry:
+            return [], [f"{label}: every project entry needs 'name' and 'path'"]
+    return entries, []
+
+
+def collect_projects() -> tuple[list[dict], list[str]]:
+    """Load hub/projects.yaml plus the optional hub/projects.local.yaml overlay.
+
+    Every returned entry carries `registry: "shared" | "local"`. A local entry
+    whose name matches a shared one replaces that entry but keeps
+    `registry: shared` -- it is the same shared project, re-pointed on this
+    machine -- so its FRs still land in the committed index. Only names that
+    exist solely in the overlay are `local`.
+    """
+    if not PROJECTS_YAML.exists():
+        return [], [f"hub/projects.yaml not found at {PROJECTS_YAML}"]
+    shared, errors = _load_registry(PROJECTS_YAML, "hub/projects.yaml")
+    if errors:
+        return [], errors
+    merged: dict[str, dict] = {}
+    for entry in shared:
+        merged[str(entry["name"])] = {**entry, "registry": "shared"}
+    if PROJECTS_LOCAL_YAML.exists():
+        local, errors = _load_registry(PROJECTS_LOCAL_YAML, "hub/projects.local.yaml")
+        if errors:
+            return [], errors
+        for entry in local:
+            name = str(entry["name"])
+            registry = "shared" if name in merged else "local"
+            merged[name] = {**entry, "registry": registry}
+    return list(merged.values()), []
+
+
+def _load_existing_index() -> dict | None:
+    """Load the existing FR-INDEX.json, or return None if missing/corrupt."""
+    if not INDEX_JSON.exists():
+        return None
+    try:
+        return json.loads(INDEX_JSON.read_text(encoding="utf-8"))
+    except (json.JSONDecodeError, OSError):
+        return None
+
+
+def _is_empty_dir(path: Path) -> bool:
+    """True if the path is a directory containing no entries at all.
+
+    A registered project path that exists but is completely empty means a
+    partial checkout, not a project without specs: git materializes a gitlink
+    it cannot resolve (and a worktree's un-checked-out nested repo) as a bare
+    empty directory.
+    """
+    if not path.is_dir():
+        return False
+    try:
+        next(path.iterdir())
+    except StopIteration:
+        return True
+    except OSError:
+        return False
+    return False
+
+
+def _fr_counts_by_project(frs: list[dict]) -> dict[str, int]:
+    """Tally FR records per project name."""
+    counts: dict[str, int] = {}
+    for rec in frs:
+        key = str(rec.get("project", ""))
+        counts[key] = counts.get(key, 0) + 1
+    return counts
+
+
+def detect_index_loss(
+    existing_index: dict | None,
+    out_projects: list[dict],
+    out_frs: list[dict],
+) -> tuple[list[str], int, int]:
+    """Compare the rebuilt index against the existing one for lost FR data.
+
+    Returns (losses, old_total, new_total). An empty losses list means the new
+    index is safe to write. Projects now marked private are excluded from the
+    comparison: dropping to zero indexed FRs is legitimate for those.
+    """
+    if not existing_index:
+        return [], 0, 0
+    old_counts = _fr_counts_by_project(existing_index.get("frs") or [])
+    if not old_counts:
+        return [], 0, 0
+    new_counts = _fr_counts_by_project(out_frs)
+    private_now = {
+        str(rec.get("name", "")) for rec in out_projects if rec.get("private", False)
+    }
+
+    losses: list[str] = []
+    for project in sorted(old_counts):
+        if project in private_now:
+            continue
+        old_n = old_counts[project]
+        new_n = new_counts.get(project, 0)
+        if new_n < old_n:
+            losses.append(f"{project}: {old_n} -> {new_n} FRs")
+
+    old_total = sum(n for proj, n in old_counts.items() if proj not in private_now)
+    new_total = sum(n for proj, n in new_counts.items() if proj not in private_now)
+    return losses, old_total, new_total
+
+
+def _file_mtime_iso(path: Path) -> str:
+    """Return the file modification time as an ISO string (UTC)."""
+    ts = path.stat().st_mtime
+    return dt.datetime.fromtimestamp(ts, tz=dt.timezone.utc).isoformat(timespec="seconds")
+
+
+def main() -> int:
+    configure_stdio()
+
+    parser = argparse.ArgumentParser(description="Cross-project FR indexer")
+    parser.add_argument("--check", action="store_true", help="validate without writing")
+    parser.add_argument(
+        "--include-worktrees",
+        action="store_true",
+        help="also index specs from .claude/worktrees/* (skipped by default)",
+    )
+    parser.add_argument(
+        "--incremental",
+        action="store_true",
+        help="only re-parse files modified since the last index run",
+    )
+    parser.add_argument(
+        "--force",
+        action="store_true",
+        help="force full rebuild (overrides --incremental)",
+    )
+    parser.add_argument(
+        "--allow-shrink",
+        action="store_true",
+        help="permit an index that loses FRs (deleted FRs, archived project)",
+    )
+    args = parser.parse_args()
+
+    incremental = args.incremental and not args.force
+    # Loaded unconditionally: this is the baseline for the FR-loss guard below,
+    # not just the cache for --incremental.
+    existing_index = _load_existing_index()
+    if incremental and existing_index is None:
+        incremental = False
+
+    cutoff_iso: str | None = None
+    if incremental and existing_index is not None:
+        cutoff_iso = existing_index.get("generated_at")
+
+    projects, errors = collect_projects()
+    if errors:
+        for e in errors:
+            safe_print(f"ERROR: {e}", file=sys.stderr)
+        return 1
+
+    out_projects: list[dict] = []
+    out_frs: list[dict] = []
+    skipped_unchanged = 0
+
+    for entry in projects:
+        name = entry.get("name", "?")
+        registry = entry.get("registry", "shared")
+        project_path = resolve_project_path(entry)
+        if not project_path.exists():
+            safe_print(f"WARN: project '{name}' path does not exist: {project_path}", file=sys.stderr)
+            out_projects.append({**entry, "exists": False, "fr_count": 0})
+            continue
+        if _is_empty_dir(project_path):
+            safe_print(
+                f"PARTIAL CHECKOUT: project '{name}' is an empty directory: "
+                f"{project_path}\n"
+                f"  This is an un-populated checkout, not a project without specs. "
+                f"Rebuild from the primary hub checkout, not a git worktree or CI.",
+                file=sys.stderr,
+            )
+            out_projects.append(
+                {**entry, "exists": True, "fr_count": 0, "partial_checkout": True}
+            )
+            continue
+        specs_dir = project_path / "specs"
+        if not specs_dir.exists():
+            safe_print(f"WARN: project '{name}' has no specs/ directory", file=sys.stderr)
+            out_projects.append({**entry, "exists": True, "fr_count": 0})
+            continue
+
+        is_private = bool(entry.get("private", False))
+        if is_private:
+            out_projects.append({**entry, "exists": True, "fr_count": 0, "indexed": False})
+            continue
+
+        main_tracked = git_tracked_specs(project_path)
+
+        # The incremental cache is FR-INDEX.json, which never holds local-only
+        # projects; always parse those in full.
+        if incremental and cutoff_iso and registry == "shared":
+            existing_frs_by_key = {}
+            if existing_index is not None:
+                for fr_rec in existing_index.get("frs", []):
+                    if fr_rec.get("project") == name and fr_rec.get("branch") == "main":
+                        existing_frs_by_key[fr_rec["fr_id"]] = fr_rec
+
+            project_records: list[dict] = []
+            for fr_path in sorted(specs_dir.glob("FR-*.md")):
+                mtime = _file_mtime_iso(fr_path)
+                fr_id_match = re.match(r"(FR-\d{4})", fr_path.stem)
+                fr_id_key = fr_id_match.group(1) if fr_id_match else None
+                if mtime <= cutoff_iso and fr_id_key and fr_id_key in existing_frs_by_key:
+                    project_records.append(existing_frs_by_key[fr_id_key])
+                    skipped_unchanged += 1
+                else:
+                    record = parse_fr_file(fr_path, project_name=name)
+                    if record is None:
+                        continue
+                    rel_to_repo = f"specs/{fr_path.name}"
+                    committed = (rel_to_repo in main_tracked) if main_tracked is not None else None
+                    record["branch"] = "main"
+                    record["committed"] = committed
+                    record["ahead_of_main"] = False
+                    record["worktree_path"] = None
+                    project_records.append(record)
+        else:
+            project_records = index_specs_dir(
+                specs_dir=specs_dir,
+                project_name=name,
+                branch="main",
+                tracked=main_tracked,
+                worktree_path=None,
+                ahead_tracked=None,
+            )
+
+        worktree_count = 0
+        in_flight_count = 0
+        if args.include_worktrees:
+            worktrees = iter_worktrees(project_path)
+            worktree_count = len(worktrees)
+            for branch_label, wt_path in worktrees:
+                wt_specs = wt_path / "specs"
+                if not wt_specs.exists():
+                    continue
+                ahead_tracked = git_tracked_specs(wt_path)
+                wt_records = index_specs_dir(
+                    specs_dir=wt_specs,
+                    project_name=name,
+                    branch=branch_label,
+                    tracked=None,
+                    worktree_path=wt_path,
+                    ahead_tracked=ahead_tracked,
+                )
+                project_records.extend(wt_records)
+                in_flight_count += sum(1 for r in wt_records if not r["committed"])
+
+        out_frs.extend(project_records)
+        out_projects.append({
+            **entry,
+            "exists": True,
+            "fr_count": len(project_records),
+            "indexed": True,
+            "worktree_count": worktree_count,
+            "in_flight_fr_count": in_flight_count,
+        })
+
+    # Split shared from local-only: FR-INDEX.json must be reproducible from
+    # projects.yaml alone, so local-only projects go to FR-INDEX.local.json.
+    local_names = {
+        str(p.get("name", "")) for p in out_projects if p.get("registry") == "local"
+    }
+    shared_projects = [p for p in out_projects if p.get("registry") != "local"]
+    shared_frs = [f for f in out_frs if str(f.get("project", "")) not in local_names]
+
+    generated_at = dt.datetime.now(dt.timezone.utc).isoformat(timespec="seconds")
+    output = {
+        "generated_at": generated_at,
+        "projects": shared_projects,
+        "frs": shared_frs,
+    }
+    local_output: dict | None = None
+    if local_names:
+        local_output = {
+            "generated_at": generated_at,
+            "overlay": "hub/projects.local.yaml",
+            "projects": out_projects,
+            "frs": out_frs,
+        }
+
+    if not args.allow_shrink:
+        losses, old_total, new_total = detect_index_loss(
+            existing_index, shared_projects, shared_frs
+        )
+        if losses:
+            action = "check failed for" if args.check else "refusing to write"
+            safe_print(
+                f"ERROR: {action} {INDEX_JSON.relative_to(HUB_ROOT)}: the rebuild "
+                f"would lose FR data ({old_total} -> {new_total} FRs)",
+                file=sys.stderr,
+            )
+            for loss in losses:
+                safe_print(f"  {loss}", file=sys.stderr)
+            safe_print(
+                "  Most likely a partial checkout: rebuild from the primary hub "
+                "checkout, not a git worktree or CI. Pass --allow-shrink if the "
+                "loss is intended (deleted FRs, archived project).",
+                file=sys.stderr,
+            )
+            return 1
+
+    if args.check:
+        safe_print(
+            f"Hub index check OK: {len(shared_projects)} projects, {len(shared_frs)} FRs"
+        )
+        if local_output is not None:
+            safe_print(
+                f"  + local overlay: {len(local_names)} project(s), "
+                f"{len(out_frs) - len(shared_frs)} FRs (FR-INDEX.local.json)"
+            )
+        return 0
+
+    INDEX_JSON.parent.mkdir(parents=True, exist_ok=True)
+    # LF and default=str: the index is committed and rebuilt on every platform,
+    # so it must not pick up CRLF on Windows, and registry entries may carry
+    # YAML-parsed dates (an unquoted `created:`) that json cannot serialise.
+    INDEX_JSON.write_text(
+        json.dumps(output, indent=2, default=str) + "\n", encoding="utf-8", newline="\n"
+    )
+    parts = [
+        f"Wrote {INDEX_JSON.relative_to(HUB_ROOT)}: "
+        f"{len(shared_projects)} projects, {len(shared_frs)} FRs"
+    ]
+    if skipped_unchanged:
+        parts.append(f" ({skipped_unchanged} unchanged, reused from cache)")
+    safe_print("".join(parts))
+
+    if local_output is not None:
+        INDEX_LOCAL_JSON.write_text(
+            json.dumps(local_output, indent=2, default=str) + "\n",
+            encoding="utf-8",
+            newline="\n",
+        )
+        safe_print(
+            f"Wrote {INDEX_LOCAL_JSON.relative_to(HUB_ROOT)}: "
+            f"{len(out_projects)} projects, {len(out_frs)} FRs "
+            f"({len(local_names)} local-only project(s); gitignored)"
+        )
+    elif INDEX_LOCAL_JSON.exists():
+        INDEX_LOCAL_JSON.unlink()
+        safe_print(
+            f"Removed stale {INDEX_LOCAL_JSON.relative_to(HUB_ROOT)} "
+            "(no local-only projects registered)"
+        )
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

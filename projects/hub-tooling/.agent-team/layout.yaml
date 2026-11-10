@@ -1,0 +1,10 @@
+# hub-tooling's layout (FR-0023:AC-6). hub-tooling sits in the hub repo's
+# `projects/hub-tooling/`, and its FRs change hub files outside it, so its
+# footprints and gate directories are hub-relative. Its tests ride into every
+# bootstrapped project and are annotated `# covers hub-tooling FR-NNNN:AC-N`.
+# Keys and defaults: `template/.agent-team/layout.yaml.example`.
+project_name: hub-tooling
+footprint_root: repo
+gate:
+  source_dirs: [template/scripts, scripts]
+  test_dirs: [template/tests, tests]

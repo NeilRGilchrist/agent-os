@@ -1,0 +1,5 @@
+services:
+  worker:
+    image: synthetic/worker:latest
+    expose:
+      - "6000"

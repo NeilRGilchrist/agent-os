@@ -1,0 +1,31 @@
+name: Validate
+on: [push, pull_request]
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # Full history: about 13 template test files compare against
+          # historical hub SHAs and skip when those are unreachable.
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install pyyaml pytest
+      # The CI checkout is inherently partial: projects/ai-hub-poc is an
+      # unresolvable gitlink and ac-pmi-main/ is out-of-tree, so both index
+      # as empty. Smoke-test only -- never write, and declare the shrink.
+      - run: python scripts/hub-index.py --check --allow-shrink
+      - run: python scripts/parking.py reindex
+      - run: python scripts/patterns.py reindex
+      # The hub's own suite and the template suite (FR-0023:AC-5). Separate
+      # invocations on purpose: template/pytest.ini's `pythonpath` applies only
+      # when template/ is the rootdir, so one combined run fails on sys.path.
+      # Non-blocking until both have been seen green on Linux.
+      - name: Hub tests
+        run: python -m pytest tests -q
+        continue-on-error: true
+      - name: Template tests
+        run: python -m pytest template/tests -q
+        continue-on-error: true

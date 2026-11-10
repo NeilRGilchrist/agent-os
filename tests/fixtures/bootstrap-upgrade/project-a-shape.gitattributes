@@ -1,0 +1,12 @@
+* text=auto eol=lf
+*.pptx -text
+
+# Pipeline metrics log (FR-0002 / H6): append-only NDJSON, one record per
+# line. `merge=union` lets concurrent appends on different branches (an agent
+# worktree's gate runs, the dispatcher's PR events) merge without conflict —
+# every line is a self-contained record, so order between branches is
+# irrelevant and no line is ever edited. See specs/_metrics/README.md.
+specs/_metrics/*.ndjson merge=union
+
+# Synthetic fixture: pin the generated spec index to LF (Project A's fourth rule).
+specs/INDEX.md text eol=lf

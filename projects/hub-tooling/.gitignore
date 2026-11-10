@@ -1,0 +1,30 @@
+AGENTS.override.md
+CLAUDE.local.md
+
+# Dispatch state (locks, logs, last-tick marker) — local-only.
+_dispatch/
+
+# Per-FR developer/reviewer git worktrees — local-only.
+.claude/worktrees/
+
+# PR body is generated per-FR by the dispatcher and consumed by
+# `gh pr create --body-file`. It must not be committed.
+PR_BODY.md
+
+# Python build/test caches. `bootstrap.py` runs scripts/index-specs.py during
+# project creation, which imports spec_footprint and leaves a __pycache__
+# behind before the initial commit.
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.venv/
+*.egg-info/
+
+# Dispatcher artifacts in a role worktree (FR-0024 AC-7). hub-tooling sits in
+# a subdirectory of the hub, so agents start here: `dispatch.py` writes the
+# permission file and provisions its venv in this directory, which the hub's
+# root `.gitignore` (`/.claude/settings.local.json`) does not cover.
+.claude/settings.local.json
+.venv-dispatch/

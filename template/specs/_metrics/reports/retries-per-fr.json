@@ -1,0 +1,26 @@
+{
+  "name": "retries-per-fr",
+  "description": "IDEA-0016 baseline: per FR, Developer rework rounds beyond the first (dispatch.run, role dev, round > 1), tool errors (sum of tool_errors_total), and failed gate runs with their failure classes. An FR absent from a section has zero of that measure.",
+  "sections": [
+    {
+      "name": "rework_rounds",
+      "filters": { "kind": ["dispatch.run"], "role": "dev" },
+      "where": [["round", "gt", 1]],
+      "group_by": ["fr"],
+      "aggs": { "rework_rounds": "count" }
+    },
+    {
+      "name": "tool_errors",
+      "filters": { "kind": ["dispatch.run"] },
+      "group_by": ["fr"],
+      "aggs": { "tool_errors": "sum:tool_errors_total" }
+    },
+    {
+      "name": "gate_failures",
+      "filters": { "kind": ["gate.run"] },
+      "where": [["outcome", "ne", "pass"]],
+      "group_by": ["fr"],
+      "aggs": { "gate_failures": "count", "failure_classes": "distinct:failure_classes" }
+    }
+  ]
+}

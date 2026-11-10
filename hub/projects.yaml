@@ -1,0 +1,55 @@
+# Project registry — maintained by scripts/bootstrap.sh
+#
+# Each entry records a project bootstrapped from this hub. The hub indexer
+# (scripts/hub-index.py) walks this list to build hub/FR-INDEX.json.
+#
+# Schema:
+#   - name: <slug>
+#     path: <absolute or relative-to-hub-root path>
+#     created: YYYY-MM-DD
+#     stack: python | node | none
+#     private: false  # if true, excluded from cross-project pattern detection
+
+projects:
+- name: ai-hub-poc
+  path: projects/ai-hub-poc
+  created: '2026-05-04'
+  stack: python
+  private: false
+- name: pm-graph-poc
+  path: ac-pmi-main/pm-graph-poc
+  created: '2026-05-03'
+  stack: python
+  private: false
+- name: nsh-eru-and-finrec-module
+  path: projects/prototypes/neilgilchrist-nsh-eru-and-finrec-module
+  created: '2026-06-04'
+  stack: node
+  # Gitignored, out-of-tree, not a submodule: the hub can't see its specs in a
+  # clean checkout/CI, so exclude it from the shared FR-INDEX.json (which must be
+  # reproducible). Still registered here for path/stack visibility.
+  private: true
+- name: ns-sltc-pathways-integration
+  path: projects/ns-sltc-pathways-integration
+  created: '2026-08-21'
+  stack: python
+  # Gitignored, out-of-tree, not a submodule: excluded from the shared
+  # FR-INDEX.json so the committed index stays reproducible in CI. See the
+  # nsh-eru entry above.
+  private: true
+- name: ai-productivity-toolkit
+  path: projects/ai-productivity-toolkit
+  created: '2026-10-21'
+  stack: python
+  # Gitignored standalone repo (remote TBD in the AlayaCare org); private for
+  # the same CI-reproducibility reason as the entries above.
+  private: true
+- name: hub-tooling
+  path: projects/hub-tooling
+  # Tracked directly in the hub repo (no submodule): spec-graph home for template/
+  # and scripts/ enhancements, so hub work traces to FRs like any project.
+  # FR-0001..0025 imported from a separate hub snapshot (ADR-0002).
+  created: '2026-10-26'
+  stack: python
+  private: false
+  profiles: []

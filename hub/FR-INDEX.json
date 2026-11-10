@@ -1,0 +1,3307 @@
+{
+  "generated_at": "2026-10-30T12:59:51+00:00",
+  "projects": [
+    {
+      "name": "ai-hub-poc",
+      "path": "projects/ai-hub-poc",
+      "created": "2026-05-04",
+      "stack": "python",
+      "private": false,
+      "registry": "shared",
+      "exists": true,
+      "fr_count": 82,
+      "indexed": true,
+      "worktree_count": 0,
+      "in_flight_fr_count": 0
+    },
+    {
+      "name": "pm-graph-poc",
+      "path": "ac-pmi-main/pm-graph-poc",
+      "created": "2026-05-03",
+      "stack": "python",
+      "private": false,
+      "registry": "shared",
+      "exists": true,
+      "fr_count": 19,
+      "indexed": true,
+      "worktree_count": 0,
+      "in_flight_fr_count": 0
+    },
+    {
+      "name": "nsh-eru-and-finrec-module",
+      "path": "projects/prototypes/neilgilchrist-nsh-eru-and-finrec-module",
+      "created": "2026-06-04",
+      "stack": "node",
+      "private": true,
+      "registry": "shared",
+      "exists": true,
+      "fr_count": 0,
+      "indexed": false
+    },
+    {
+      "name": "ns-sltc-pathways-integration",
+      "path": "projects/ns-sltc-pathways-integration",
+      "created": "2026-08-21",
+      "stack": "python",
+      "private": true,
+      "registry": "shared",
+      "exists": true,
+      "fr_count": 0,
+      "indexed": false
+    },
+    {
+      "name": "ai-productivity-toolkit",
+      "path": "projects/ai-productivity-toolkit",
+      "created": "2026-10-21",
+      "stack": "python",
+      "private": true,
+      "registry": "shared",
+      "exists": true,
+      "fr_count": 0,
+      "indexed": false
+    },
+    {
+      "name": "hub-tooling",
+      "path": "projects/hub-tooling",
+      "created": "2026-10-26",
+      "stack": "python",
+      "private": false,
+      "profiles": [],
+      "registry": "shared",
+      "exists": true,
+      "fr_count": 26,
+      "indexed": true,
+      "worktree_count": 0,
+      "in_flight_fr_count": 0
+    }
+  ],
+  "frs": [
+    {
+      "project": "ai-hub-poc",
+      "fr_id": "FR-0001",
+      "title": "Ingestion Event Contract",
+      "status": "merged",
+      "owner": "architect",
+      "tags": [
+        "ingestion",
+        "event-contract",
+        "freshness",
+        "source-taxonomy"
+      ],
+      "depends_on": [],
+      "derived_from": null,
+      "pattern": null,
+      "created": "2026-05-04",
+      "updated": "2026-05-04",
+      "rel_path": "projects/ai-hub-poc/specs/FR-0001-ingestion-event-contract.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "ai-hub-poc",
+      "fr_id": "FR-0002",
+      "title": "Deterministic Event ID Hashing",
+      "status": "merged",
+      "owner": "architect",
+      "tags": [
+        "ingestion",
+        "event-contract",
+        "idempotency"
+      ],
+      "depends_on": [
+        "FR-0001"
+      ],
+      "derived_from": null,
+      "pattern": null,
+      "created": "2026-05-04",
+      "updated": "2026-05-05",
+      "rel_path": "projects/ai-hub-poc/specs/FR-0002-deterministic-event-id.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "ai-hub-poc",
+      "fr_id": "FR-0003",
+      "title": "Schema and Producer Versioning Policy",
+      "status": "merged",
+      "owner": "architect",
+      "tags": [
+        "ingestion",
+        "versioning",
+        "governance"
+      ],
+      "depends_on": [
+        "FR-0001"
+      ],
+      "derived_from": null,
+      "pattern": null,
+      "created": "2026-05-04",
+      "updated": "2026-05-05",
+      "rel_path": "projects/ai-hub-poc/specs/FR-0003-versioning-policy.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "ai-hub-poc",
+      "fr_id": "FR-0004",
+      "title": "PHI/PII Scrub Pipeline",
+      "status": "merged",
+      "owner": "architect",
+      "tags": [
+        "ingestion",
+        "privacy",
+        "phi",
+        "scrub"
+      ],
+      "depends_on": [
+        "FR-0001",
+        "FR-0002"
+      ],
+      "derived_from": null,
+      "pattern": null,
+      "created": "2026-05-04",
+      "updated": "2026-05-06",
+      "rel_path": "projects/ai-hub-poc/specs/FR-0004-phi-scrub-pipeline.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "ai-hub-poc",
+      "fr_id": "FR-0005",
+      "title": "ai-hub Self-Ingestion Adapter",
+      "status": "merged",
+      "owner": "architect",
+      "tags": [
+        "ingestion",
+        "self-ingestion",
+        "code-commit",
+        "demo"
+      ],
+      "depends_on": [
+        "FR-0001",
+        "FR-0002",
+        "FR-0003",
+        "FR-0004"
+      ],
+      "derived_from": null,
+      "pattern": null,
+      "created": "2026-05-04",
+      "updated": "2026-08-19",
+      "rel_path": "projects/ai-hub-poc/specs/FR-0005-self-ingestion-adapter.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "ai-hub-poc",
+      "fr_id": "FR-0006",
+      "title": "Transcript Capture Adapter (AI-Scribe \u2192 IngestionEvent)",
+      "status": "merged",
+      "owner": "architect",
+      "tags": [
+        "ingestion",
+        "capture",
+        "transcript",
+        "ai-scribe",
+        "webhook"
+      ],
+      "depends_on": [
+        "FR-0001",
+        "FR-0002",
+        "FR-0003",
+        "FR-0004"
+      ],
+      "derived_from": null,
+      "pattern": null,
+      "created": "2026-05-04",
+      "updated": "2026-05-06",
+      "rel_path": "projects/ai-hub-poc/specs/FR-0006-transcript-capture-adapter.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "ai-hub-poc",
+      "fr_id": "FR-0007",
+      "title": "Extraction Event Contract (Schema-Driven)",
+      "status": "merged",
+      "owner": "architect",
+      "tags": [
+        "extraction",
+        "event-contract",
+        "schema-registry",
+        "layer-3"
+      ],
+      "depends_on": [
+        "FR-0001",
+        "FR-0003"
+      ],
+      "derived_from": null,
+      "pattern": null,
+      "created": "2026-05-04",
+      "updated": "2026-08-06",
+      "rel_path": "projects/ai-hub-poc/specs/FR-0007-extraction-event-contract.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "ai-hub-poc",
+      "fr_id": "FR-0008",
+      "title": "Per-Tenant Extraction Config",
+      "status": "merged",
+      "owner": "architect",
+      "tags": [
+        "extraction",
+        "configuration",
+        "tenant",
+        "layer-3"
+      ],
+      "depends_on": [
+        "FR-0007"
+      ],
+      "derived_from": null,
+      "pattern": null,
+      "created": "2026-05-04",
+      "updated": "2026-05-06",
+      "rel_path": "projects/ai-hub-poc/specs/FR-0008-per-tenant-extraction-config.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "ai-hub-poc",
+      "fr_id": "FR-0009",
+      "title": "Extraction Agent (Anthropic SDK Tool-Use)",
+      "status": "merged",
+      "owner": "architect",
+      "tags": [
+        "extraction",
+        "agent",
+        "anthropic-sdk",
+        "tool-use",
+        "layer-3"
+      ],
+      "depends_on": [
+        "FR-0001",
+        "FR-0004",
+        "FR-0007",
+        "FR-0008"
+      ],
+      "derived_from": null,
+      "pattern": null,
+      "created": "2026-05-04",
+      "updated": "2026-05-06",
+      "rel_path": "projects/ai-hub-poc/specs/FR-0009-extraction-agent.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "ai-hub-poc",
+      "fr_id": "FR-0010",
+      "title": "Knowledge Graph Projection Schema (Neo4j)",
+      "status": "merged",
+      "owner": "architect",
+      "tags": [
+        "knowledge-graph",
+        "neo4j",
+        "projection",
+        "layer-4",
+        "schema-registry"
+      ],
+      "depends_on": [
+        "FR-0001",
+        "FR-0007",
+        "FR-0008"
+      ],
+      "derived_from": null,
+      "pattern": null,
+      "created": "2026-05-04",
+      "updated": "2026-05-06",
+      "rel_path": "projects/ai-hub-poc/specs/FR-0010-kg-projection-schema.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "ai-hub-poc",
+      "fr_id": "FR-0011",
+      "title": "Spec Footprint Metadata, Overlap Reporting, and CODEOWNERS Emission",
+      "status": "merged",
+      "owner": "architect",
+      "tags": [
+        "governance",
+        "dispatch",
+        "process"
+      ],
+      "depends_on": [],
+      "derived_from": null,
+      "pattern": null,
+      "created": "2026-05-05",
+      "updated": "2026-05-06",
+      "rel_path": "projects/ai-hub-poc/specs/FR-0011-spec-footprint-metadata.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "ai-hub-poc",
+      "fr_id": "FR-0012",
+      "title": "Finalize gates on deploy-gate before opening or un-drafting a PR",
+      "status": "merged",
+      "owner": "architect",
+      "tags": [
+        "dispatcher",
+        "workflow",
+        "quality-gate",
+        "traceability"
+      ],
+      "depends_on": [],
+      "derived_from": "IDEA-0002",
+      "pattern": null,
+      "created": "2026-05-28",
+      "updated": "2026-05-28",
+      "rel_path": "projects/ai-hub-poc/specs/FR-0012-finalize-gate-preflight.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "ai-hub-poc",
+      "fr_id": "FR-0013",
+      "title": "reconcile-merged fetches origin/main and refuses to flip when local is behind",
+      "status": "merged",
+      "owner": "architect",
+      "tags": [
+        "dispatcher",
+        "workflow",
+        "reconcile",
+        "robustness"
+      ],
+      "depends_on": [],
+      "derived_from": "IDEA-0003",
+      "pattern": null,
+      "created": "2026-05-28",
+      "updated": "2026-05-28",
+      "rel_path": "projects/ai-hub-poc/specs/FR-0013-reconcile-fetch-before-flip.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "ai-hub-poc",
+      "fr_id": "FR-0014",
+      "title": "Containerized Runtime Stack (Docker Compose + AWS ECS)",
+      "status": "merged",
+      "owner": "architect",
+      "tags": [
+        "deployment",
+        "docker",
+        "aws",
+        "ecs",
+        "local-dev",
+        "infrastructure"
+      ],
+      "depends_on": [
+        "FR-0004",
+        "FR-0006",
+        "FR-0009",
+        "FR-0010"
+      ],
+      "derived_from": null,
+      "pattern": null,
+      "created": "2026-05-28",
+      "updated": "2026-05-29",
+      "rel_path": "projects/ai-hub-poc/specs/FR-0014-containerized-runtime-aws.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "ai-hub-poc",
+      "fr_id": "FR-0015",
+      "title": "Fathom MCP Dev Harness (Cursor + cursor-agent)",
+      "status": "merged",
+      "owner": "architect",
+      "tags": [
+        "dev-harness",
+        "mcp",
+        "fathom",
+        "testing",
+        "cursor"
+      ],
+      "depends_on": [
+        "FR-0006"
+      ],
+      "derived_from": null,
+      "pattern": null,
+      "created": "2026-05-28",
+      "updated": "2026-08-06",
+      "rel_path": "projects/ai-hub-poc/specs/FR-0015-fathom-mcp-dev-harness.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "ai-hub-poc",
+      "fr_id": "FR-0016",
+      "title": "Human Review Event Contract and Provenance",
+      "status": "merged",
+      "owner": "architect",
+      "tags": [
+        "human-review",
+        "hitl",
+        "audit",
+        "provenance",
+        "layer-4"
+      ],
+      "depends_on": [
+        "FR-0007",
+        "FR-0009",
+        "FR-0010"
+      ],
+      "derived_from": null,
+      "pattern": null,
+      "created": "2026-05-29",
+      "updated": "2026-05-29",
+      "rel_path": "projects/ai-hub-poc/specs/FR-0016-human-review-event-contract.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "ai-hub-poc",
+      "fr_id": "FR-0017",
+      "title": "Review Read Surface (Pending ReviewTask Query API)",
+      "status": "merged",
+      "owner": "architect",
+      "tags": [
+        "human-review",
+        "hitl",
+        "read-api",
+        "neo4j",
+        "layer-4"
+      ],
+      "depends_on": [
+        "FR-0010",
+        "FR-0016"
+      ],
+      "derived_from": null,
+      "pattern": null,
+      "created": "2026-05-29",
+      "updated": "2026-05-29",
+      "rel_path": "projects/ai-hub-poc/specs/FR-0017-review-read-surface.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "ai-hub-poc",
+      "fr_id": "FR-0018",
+      "title": "Review Write-Back Service and KG Application",
+      "status": "merged",
+      "owner": "architect",
+      "tags": [
+        "human-review",
+        "hitl",
+        "write-back",
+        "neo4j",
+        "audit",
+        "layer-4"
+      ],
+      "depends_on": [
+        "FR-0016",
+        "FR-0017",
+        "FR-0010"
+      ],
+      "derived_from": null,
+      "pattern": null,
+      "created": "2026-05-29",
+      "updated": "2026-08-19",
+      "rel_path": "projects/ai-hub-poc/specs/FR-0018-review-write-back-kg.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "ai-hub-poc",
+      "fr_id": "FR-0019",
+      "title": "Slack Human Review Client",
+      "status": "merged",
+      "owner": "architect",
+      "tags": [
+        "human-review",
+        "slack",
+        "hitl",
+        "ui",
+        "layer-4"
+      ],
+      "depends_on": [
+        "FR-0017",
+        "FR-0018"
+      ],
+      "derived_from": null,
+      "pattern": null,
+      "created": "2026-05-29",
+      "updated": "2026-05-29",
+      "rel_path": "projects/ai-hub-poc/specs/FR-0019-slack-human-review-client.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "ai-hub-poc",
+      "fr_id": "FR-0020",
+      "title": "Migrate Extraction Agent LLM Client to AlayaCare LiteLLM Gateway",
+      "status": "merged",
+      "owner": "architect",
+      "tags": [
+        "extraction",
+        "litellm",
+        "gateway",
+        "openai-sdk",
+        "infrastructure",
+        "layer-3"
+      ],
+      "depends_on": [
+        "FR-0009",
+        "FR-0014"
+      ],
+      "derived_from": null,
+      "pattern": null,
+      "created": "2026-05-29",
+      "updated": "2026-06-01",
+      "rel_path": "projects/ai-hub-poc/specs/FR-0020-bedrock-migration.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "ai-hub-poc",
+      "fr_id": "FR-0021",
+      "title": "Sandbox permission pre-flight check for git-write tasks",
+      "status": "merged",
+      "owner": "architect",
+      "tags": [
+        "template",
+        "developer-experience",
+        "sandbox",
+        "error-reduction"
+      ],
+      "depends_on": [],
+      "derived_from": "IDEA-0017",
+      "pattern": null,
+      "created": "2026-06-01",
+      "updated": "2026-06-01",
+      "rel_path": "projects/ai-hub-poc/specs/FR-0021-sandbox-permission-preflight.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "ai-hub-poc",
+      "fr_id": "FR-0022",
+      "title": "Deprecate or automate escalation log",
+      "status": "merged",
+      "owner": "architect",
+      "tags": [
+        "template",
+        "observability",
+        "escalation",
+        "overhead-reduction"
+      ],
+      "depends_on": [],
+      "derived_from": "IDEA-0018",
+      "pattern": null,
+      "created": "2026-06-01",
+      "updated": "2026-06-01",
+      "rel_path": "projects/ai-hub-poc/specs/FR-0022-deprecate-automate-escalation-log.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "ai-hub-poc",
+      "fr_id": "FR-0023",
+      "title": "CoS dirty-checking hub-state refresh optimization",
+      "status": "merged",
+      "owner": "architect",
+      "tags": [
+        "template",
+        "cos",
+        "performance",
+        "hub-scripts",
+        "overhead-reduction"
+      ],
+      "depends_on": [],
+      "derived_from": "IDEA-0019",
+      "pattern": null,
+      "created": "2026-06-01",
+      "updated": "2026-06-01",
+      "rel_path": "projects/ai-hub-poc/specs/FR-0023-cos-dirty-checking-optimization.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "ai-hub-poc",
+      "fr_id": "FR-0024",
+      "title": "Local Web Review UI (BFF + Observatory static UI)",
+      "status": "merged",
+      "owner": "architect",
+      "tags": [
+        "human-review",
+        "hitl",
+        "web",
+        "layer-4",
+        "local-dev"
+      ],
+      "depends_on": [
+        "FR-0017",
+        "FR-0018",
+        "FR-0014"
+      ],
+      "derived_from": null,
+      "pattern": null,
+      "created": "2026-06-03",
+      "updated": "2026-06-10",
+      "rel_path": "projects/ai-hub-poc/specs/FR-0024-web-review-ui.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "ai-hub-poc",
+      "fr_id": "FR-0025",
+      "title": "Orchestrator Role for Single-Thread-Per-Role Dispatch",
+      "status": "merged",
+      "owner": "architect",
+      "tags": [
+        "template",
+        "agent-team",
+        "orchestrator",
+        "dispatch",
+        "workflow",
+        "role-isolation"
+      ],
+      "depends_on": [],
+      "derived_from": "IDEA-0020",
+      "pattern": null,
+      "created": "2026-06-03",
+      "updated": "2026-06-04",
+      "rel_path": "projects/ai-hub-poc/specs/FR-0025-orchestrator-role.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "ai-hub-poc",
+      "fr_id": "FR-0026",
+      "title": "Back-propagate dispatch.py gate preflight and reconcile safeguards to template",
+      "status": "merged",
+      "owner": "developer",
+      "tags": [
+        "template",
+        "dispatcher",
+        "quality-gate",
+        "reconcile",
+        "back-propagation"
+      ],
+      "depends_on": [],
+      "derived_from": null,
+      "pattern": null,
+      "created": "2026-06-03",
+      "updated": "2026-06-05",
+      "rel_path": "projects/ai-hub-poc/specs/FR-0026-dispatch-gate-preflight-backprop.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "ai-hub-poc",
+      "fr_id": "FR-0027",
+      "title": "Sync-forward template hooks, settings, and handoff-protocol strengthening to POC",
+      "status": "merged",
+      "owner": "architect",
+      "tags": [
+        "template",
+        "back-propagation",
+        "hooks",
+        "settings",
+        "quality-gate",
+        "sync"
+      ],
+      "depends_on": [],
+      "derived_from": null,
+      "pattern": null,
+      "created": "2026-06-03",
+      "updated": "2026-06-05",
+      "rel_path": "projects/ai-hub-poc/specs/FR-0027-poc-sync-forward-hooks-settings.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "ai-hub-poc",
+      "fr_id": "FR-0028",
+      "title": "Extraction eval harness and bounded model iteration",
+      "status": "merged",
+      "owner": "architect",
+      "tags": [
+        "extraction",
+        "evaluation",
+        "regression",
+        "layer-3",
+        "sonnet",
+        "quality"
+      ],
+      "depends_on": [
+        "FR-0007",
+        "FR-0008",
+        "FR-0009"
+      ],
+      "derived_from": null,
+      "pattern": null,
+      "created": "2026-06-05",
+      "updated": "2026-06-18",
+      "rel_path": "projects/ai-hub-poc/specs/FR-0028-extraction-eval-harness.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "ai-hub-poc",
+      "fr_id": "FR-0029",
+      "title": "KG Entity Query API (Dashboard Read Surface + Actionability Rules)",
+      "status": "merged",
+      "owner": "architect",
+      "tags": [
+        "knowledge-graph",
+        "query-api",
+        "dashboard",
+        "actionability",
+        "layer-4",
+        "stakeholder-centric"
+      ],
+      "depends_on": [
+        "FR-0010",
+        "FR-0008"
+      ],
+      "derived_from": null,
+      "pattern": null,
+      "created": "2026-06-10",
+      "updated": "2026-06-10",
+      "rel_path": "projects/ai-hub-poc/specs/FR-0029-kg-entity-query-api.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "ai-hub-poc",
+      "fr_id": "FR-0030",
+      "title": "Actionability Dashboard UI",
+      "status": "merged",
+      "owner": "architect",
+      "tags": [
+        "dashboard",
+        "human-review",
+        "web",
+        "stakeholder-centric",
+        "layer-4",
+        "actionability"
+      ],
+      "depends_on": [
+        "FR-0029",
+        "FR-0018",
+        "FR-0024"
+      ],
+      "derived_from": null,
+      "pattern": null,
+      "created": "2026-06-10",
+      "updated": "2026-08-05",
+      "rel_path": "projects/ai-hub-poc/specs/FR-0030-actionability-dashboard-ui.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "ai-hub-poc",
+      "fr_id": "FR-0031",
+      "title": "Entity Annotations and Manual Project Tags",
+      "status": "merged",
+      "owner": "architect",
+      "tags": [
+        "knowledge-graph",
+        "annotations",
+        "project-tags",
+        "dashboard",
+        "layer-4"
+      ],
+      "depends_on": [
+        "FR-0029",
+        "FR-0010",
+        "FR-0018"
+      ],
+      "derived_from": null,
+      "pattern": null,
+      "created": "2026-06-11",
+      "updated": "2026-06-11",
+      "rel_path": "projects/ai-hub-poc/specs/FR-0031-entity-annotations-project-tags.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "ai-hub-poc",
+      "fr_id": "FR-0032",
+      "title": "Shared Web Navigation Header",
+      "status": "merged",
+      "owner": "architect",
+      "tags": [
+        "web",
+        "navigation",
+        "ux",
+        "layer-4",
+        "review-queue",
+        "dashboard"
+      ],
+      "depends_on": [
+        "FR-0024",
+        "FR-0030"
+      ],
+      "derived_from": null,
+      "pattern": null,
+      "created": "2026-06-12",
+      "updated": "2026-08-19",
+      "rel_path": "projects/ai-hub-poc/specs/FR-0032-shared-web-navigation-header.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "ai-hub-poc",
+      "fr_id": "FR-0033",
+      "title": "Manual Transcript Upload UI",
+      "status": "merged",
+      "owner": "architect",
+      "tags": [
+        "ingestion",
+        "web",
+        "transcript",
+        "upload",
+        "attribution",
+        "fathom"
+      ],
+      "depends_on": [
+        "FR-0024",
+        "FR-0032"
+      ],
+      "derived_from": null,
+      "pattern": null,
+      "created": "2026-06-15",
+      "updated": "2026-08-13",
+      "rel_path": "projects/ai-hub-poc/specs/FR-0033-manual-transcript-upload-ui.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "ai-hub-poc",
+      "fr_id": "FR-0034",
+      "title": "Per-Customer Extraction Config Overlays",
+      "status": "merged",
+      "owner": "architect",
+      "tags": [
+        "extraction",
+        "configuration",
+        "customer",
+        "multi-customer",
+        "layer-3"
+      ],
+      "depends_on": [
+        "FR-0008",
+        "FR-0009"
+      ],
+      "derived_from": null,
+      "pattern": null,
+      "created": "2026-06-15",
+      "updated": "2026-06-18",
+      "rel_path": "projects/ai-hub-poc/specs/FR-0034-per-customer-extraction-config-overlays.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "ai-hub-poc",
+      "fr_id": "FR-0035",
+      "title": "Dashboard Customer Dimension",
+      "status": "merged",
+      "owner": "architect",
+      "tags": [
+        "dashboard",
+        "multi-customer",
+        "web",
+        "layer-4",
+        "context-switching"
+      ],
+      "depends_on": [
+        "FR-0029",
+        "FR-0030"
+      ],
+      "derived_from": null,
+      "pattern": null,
+      "created": "2026-06-15",
+      "updated": "2026-08-05",
+      "rel_path": "projects/ai-hub-poc/specs/FR-0035-dashboard-customer-dimension.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "ai-hub-poc",
+      "fr_id": "FR-0036",
+      "title": "Per-User Fathom API Key on Upload Page",
+      "status": "merged",
+      "owner": "architect",
+      "tags": [
+        "web",
+        "fathom",
+        "upload",
+        "multi-user",
+        "pilot",
+        "auth"
+      ],
+      "depends_on": [
+        "FR-0033"
+      ],
+      "derived_from": "IDEA-0001",
+      "pattern": null,
+      "created": "2026-06-15",
+      "updated": "2026-06-16",
+      "rel_path": "projects/ai-hub-poc/specs/FR-0036-per-user-fathom-api-key.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "ai-hub-poc",
+      "fr_id": "FR-0037",
+      "title": "Live extraction integration through LiteLLM gateway (synthetic transcript, baseline candidate capture)",
+      "status": "merged",
+      "owner": "architect",
+      "tags": [
+        "extraction",
+        "litellm-gateway",
+        "live-eval",
+        "integration-test"
+      ],
+      "depends_on": [
+        "FR-0009",
+        "FR-0020",
+        "FR-0028"
+      ],
+      "derived_from": "IDEA-0022",
+      "pattern": null,
+      "created": "2026-06-16",
+      "updated": "2026-07-10",
+      "rel_path": "projects/ai-hub-poc/specs/FR-0037-live-extraction-gateway-integration.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "ai-hub-poc",
+      "fr_id": "FR-0038",
+      "title": "Scrub Roster and Speaker-Attribution Context (Layer-2 Write-Time Inputs)",
+      "status": "merged",
+      "owner": "architect",
+      "tags": [
+        "scrub",
+        "privacy",
+        "roster",
+        "attribution",
+        "layer-2"
+      ],
+      "depends_on": [
+        "FR-0004"
+      ],
+      "derived_from": null,
+      "pattern": null,
+      "created": "2026-07-10",
+      "updated": "2026-07-10",
+      "rel_path": "projects/ai-hub-poc/specs/FR-0038-scrub-roster-speaker-context.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "ai-hub-poc",
+      "fr_id": "FR-0039",
+      "title": "Referent Resolution and Role-Aware Redaction for the Scrub Layer",
+      "status": "merged",
+      "owner": "architect",
+      "tags": [
+        "scrub",
+        "privacy",
+        "resolution",
+        "role-aware",
+        "layer-2"
+      ],
+      "depends_on": [
+        "FR-0004",
+        "FR-0038"
+      ],
+      "derived_from": null,
+      "pattern": null,
+      "created": "2026-07-10",
+      "updated": "2026-07-10",
+      "rel_path": "projects/ai-hub-poc/specs/FR-0039-scrub-referent-resolution.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "ai-hub-poc",
+      "fr_id": "FR-0040",
+      "title": "Consistent-Per-Referent Tokenisation and Three-Way Redaction Policy",
+      "status": "merged",
+      "owner": "architect",
+      "tags": [
+        "scrub",
+        "privacy",
+        "tokenisation",
+        "coreference",
+        "layer-2"
+      ],
+      "depends_on": [
+        "FR-0004",
+        "FR-0039"
+      ],
+      "derived_from": null,
+      "pattern": null,
+      "created": "2026-07-10",
+      "updated": "2026-07-27",
+      "rel_path": "projects/ai-hub-poc/specs/FR-0040-consistent-per-referent-tokenisation.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "ai-hub-poc",
+      "fr_id": "FR-0041",
+      "title": "Additive Local NER Recall Pass (In-VPC, Span-Union, No-Egress)",
+      "status": "merged",
+      "owner": "architect",
+      "tags": [
+        "scrub",
+        "privacy",
+        "ner",
+        "recall",
+        "layer-2"
+      ],
+      "depends_on": [
+        "FR-0004",
+        "FR-0039"
+      ],
+      "derived_from": null,
+      "pattern": null,
+      "created": "2026-07-10",
+      "updated": "2026-07-28",
+      "rel_path": "projects/ai-hub-poc/specs/FR-0041-local-ner-recall-pass.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "ai-hub-poc",
+      "fr_id": "FR-0042",
+      "title": "KG Consented-Stakeholder Lookup for In-Absentia Retention",
+      "status": "merged",
+      "owner": "architect",
+      "tags": [
+        "scrub",
+        "privacy",
+        "knowledge-graph",
+        "retention",
+        "layer-4"
+      ],
+      "depends_on": [
+        "FR-0038",
+        "FR-0039",
+        "FR-0010",
+        "FR-0029"
+      ],
+      "derived_from": null,
+      "pattern": null,
+      "created": "2026-07-10",
+      "updated": "2026-07-27",
+      "rel_path": "projects/ai-hub-poc/specs/FR-0042-kg-consented-stakeholder-lookup.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "ai-hub-poc",
+      "fr_id": "FR-0043",
+      "title": "Widen IngestionEvent for Email Source (event_type + source_system)",
+      "status": "merged",
+      "owner": "architect",
+      "tags": [
+        "ingestion",
+        "event-contract",
+        "schema-registry",
+        "email"
+      ],
+      "depends_on": [
+        "FR-0001",
+        "FR-0003"
+      ],
+      "derived_from": null,
+      "pattern": null,
+      "created": "2026-07-23",
+      "updated": "2026-07-27",
+      "rel_path": "projects/ai-hub-poc/specs/FR-0043-widen-ingestion-event-for-email.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "ai-hub-poc",
+      "fr_id": "FR-0044",
+      "title": "Email Capture Adapter (Outlook \u2192 IngestionEvent)",
+      "status": "merged",
+      "owner": "architect",
+      "tags": [
+        "ingestion",
+        "capture",
+        "email",
+        "outlook",
+        "adapter"
+      ],
+      "depends_on": [
+        "FR-0043",
+        "FR-0001",
+        "FR-0002",
+        "FR-0003",
+        "FR-0004"
+      ],
+      "derived_from": null,
+      "pattern": null,
+      "created": "2026-07-23",
+      "updated": "2026-07-27",
+      "rel_path": "projects/ai-hub-poc/specs/FR-0044-email-capture-adapter.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "ai-hub-poc",
+      "fr_id": "FR-0045",
+      "title": "Untrack PR_BODY.md and gitignore it (repo hygiene)",
+      "status": "merged",
+      "owner": "architect",
+      "tags": [
+        "governance",
+        "repo-hygiene",
+        "gitignore",
+        "dispatch",
+        "workflow"
+      ],
+      "depends_on": [],
+      "derived_from": null,
+      "pattern": null,
+      "created": "2026-07-23",
+      "updated": "2026-07-23",
+      "rel_path": "projects/ai-hub-poc/specs/FR-0045-untrack-pr-body-gitignore.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "ai-hub-poc",
+      "fr_id": "FR-0046",
+      "title": "Knowledge-Base Query MCP Server (Task-Shaped Read Tools for LLMs)",
+      "status": "merged",
+      "owner": "architect",
+      "tags": [
+        "mcp",
+        "query-api",
+        "knowledge-graph",
+        "layer-4",
+        "llm-tools",
+        "stakeholder-resolution"
+      ],
+      "depends_on": [
+        "FR-0010",
+        "FR-0029",
+        "FR-0035"
+      ],
+      "derived_from": null,
+      "pattern": null,
+      "created": "2026-07-27",
+      "updated": "2026-07-28",
+      "rel_path": "projects/ai-hub-poc/specs/FR-0046-kb-query-mcp-server.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "ai-hub-poc",
+      "fr_id": "FR-0047",
+      "title": "Extraction truncation detection (surface max_tokens/length stop reason)",
+      "status": "merged",
+      "owner": "architect",
+      "tags": [
+        "extraction",
+        "observability",
+        "truncation",
+        "model-invocation"
+      ],
+      "depends_on": [],
+      "derived_from": null,
+      "pattern": null,
+      "created": "2026-07-27",
+      "updated": "2026-07-28",
+      "rel_path": "projects/ai-hub-poc/specs/FR-0047-extraction-truncation-detection.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "ai-hub-poc",
+      "fr_id": "FR-0048",
+      "title": "Raise default extraction output budget to 32K",
+      "status": "merged",
+      "owner": "architect",
+      "tags": [
+        "extraction",
+        "config",
+        "token-budget",
+        "deployment"
+      ],
+      "depends_on": [
+        "FR-0047"
+      ],
+      "derived_from": null,
+      "pattern": null,
+      "created": "2026-07-27",
+      "updated": "2026-07-28",
+      "rel_path": "projects/ai-hub-poc/specs/FR-0048-raise-extraction-token-budget.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "ai-hub-poc",
+      "fr_id": "FR-0049",
+      "title": "Email Scrub Path (extend scrub consumer + msgraph body fetch)",
+      "status": "merged",
+      "owner": "architect",
+      "tags": [
+        "ingestion",
+        "privacy",
+        "phi",
+        "scrub",
+        "email"
+      ],
+      "depends_on": [
+        "FR-0004",
+        "FR-0044",
+        "FR-0043"
+      ],
+      "derived_from": null,
+      "pattern": null,
+      "created": "2026-07-27",
+      "updated": "2026-07-28",
+      "rel_path": "projects/ai-hub-poc/specs/FR-0049-email-scrub-path.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "ai-hub-poc",
+      "fr_id": "FR-0050",
+      "title": "Email Poll Harness (mailbox fetch \u2192 capture_email \u2192 bus) + internal-only admission gate",
+      "status": "merged",
+      "owner": "architect",
+      "tags": [
+        "ingestion",
+        "capture",
+        "email",
+        "outlook",
+        "harness",
+        "trigger"
+      ],
+      "depends_on": [
+        "FR-0044",
+        "FR-0049"
+      ],
+      "derived_from": null,
+      "pattern": null,
+      "created": "2026-07-27",
+      "updated": "2026-07-28",
+      "rel_path": "projects/ai-hub-poc/specs/FR-0050-email-poll-harness.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "ai-hub-poc",
+      "fr_id": "FR-0051",
+      "title": "Migrate the KB Query MCP server to the mcp 2.0 SDK",
+      "status": "draft",
+      "owner": "architect",
+      "tags": [
+        "mcp",
+        "dependency",
+        "migration",
+        "sdk-upgrade",
+        "layer-4",
+        "llm-tools"
+      ],
+      "depends_on": [
+        "FR-0046"
+      ],
+      "derived_from": null,
+      "pattern": null,
+      "created": "2026-07-27",
+      "updated": "2026-07-27",
+      "rel_path": "projects/ai-hub-poc/specs/FR-0051-migrate-mcp-2.0.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "ai-hub-poc",
+      "fr_id": "FR-0052",
+      "title": "Tenant RBAC for Small-Team Pilot (Principal Identity + Authorization Layer)",
+      "status": "merged",
+      "owner": "architect",
+      "tags": [
+        "auth",
+        "identity",
+        "rbac",
+        "human-review",
+        "pilot"
+      ],
+      "depends_on": [
+        "FR-0016",
+        "FR-0017",
+        "FR-0018"
+      ],
+      "derived_from": "IDEA-0013",
+      "pattern": null,
+      "created": "2026-07-28",
+      "updated": "2026-08-18",
+      "rel_path": "projects/ai-hub-poc/specs/FR-0052-tenant-rbac-pilot.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "ai-hub-poc",
+      "fr_id": "FR-0053",
+      "title": "Passive Real-Time Fathom Webhook Trigger (recording.completed \u2192 auto-ingest \u2192 review surface)",
+      "status": "merged",
+      "owner": "architect",
+      "tags": [
+        "ingestion",
+        "webhook",
+        "fathom",
+        "real-time",
+        "observability"
+      ],
+      "depends_on": [
+        "FR-0006",
+        "FR-0009",
+        "FR-0017"
+      ],
+      "derived_from": null,
+      "pattern": null,
+      "created": "2026-07-28",
+      "updated": "2026-08-04",
+      "rel_path": "projects/ai-hub-poc/specs/FR-0053-passive-webhook-trigger.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "ai-hub-poc",
+      "fr_id": "FR-0054",
+      "title": "Demoable KB Query MCP in Claude Code / Cursor (Custom MCP Client Integration + Runbook)",
+      "status": "merged",
+      "owner": "architect",
+      "tags": [
+        "mcp",
+        "llm-tools",
+        "developer-experience",
+        "layer-4"
+      ],
+      "depends_on": [
+        "FR-0046"
+      ],
+      "derived_from": null,
+      "pattern": null,
+      "created": "2026-07-28",
+      "updated": "2026-08-07",
+      "rel_path": "projects/ai-hub-poc/specs/FR-0054-mcp-claude-cursor-client-demo.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "ai-hub-poc",
+      "fr_id": "FR-0055",
+      "title": "No-YAML Configuration Interface with OAuth Data-Source Connect",
+      "status": "merged",
+      "owner": "architect",
+      "tags": [
+        "config",
+        "web-ui",
+        "oauth",
+        "onboarding",
+        "no-yaml"
+      ],
+      "depends_on": [
+        "FR-0008",
+        "FR-0034",
+        "FR-0024",
+        "FR-0032",
+        "FR-0033"
+      ],
+      "derived_from": null,
+      "pattern": null,
+      "created": "2026-07-28",
+      "updated": "2026-08-13",
+      "rel_path": "projects/ai-hub-poc/specs/FR-0055-no-yaml-config-interface-oauth-connect.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "ai-hub-poc",
+      "fr_id": "FR-0056",
+      "title": "Passive Fathom Webhook Runtime \u2014 Container Entrypoint, Compose Service, and Live Runbook",
+      "status": "merged",
+      "owner": "architect",
+      "tags": [
+        "deployment",
+        "docker",
+        "webhook",
+        "fathom",
+        "real-time",
+        "local-dev"
+      ],
+      "depends_on": [
+        "FR-0006",
+        "FR-0014",
+        "FR-0053"
+      ],
+      "derived_from": null,
+      "pattern": null,
+      "created": "2026-08-04",
+      "updated": "2026-08-12",
+      "rel_path": "projects/ai-hub-poc/specs/FR-0056-passive-fathom-webhook-runtime.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "ai-hub-poc",
+      "fr_id": "FR-0057",
+      "title": "Dispatcher Control-Plane Hardening \u2014 Single-FR Targeting, Reconcile Fallback, Staged-Work Commit",
+      "status": "merged",
+      "owner": "architect",
+      "tags": [
+        "orchestration",
+        "dispatcher",
+        "tooling",
+        "developer-experience"
+      ],
+      "depends_on": [],
+      "derived_from": null,
+      "pattern": null,
+      "created": "2026-08-05",
+      "updated": "2026-08-06",
+      "rel_path": "projects/ai-hub-poc/specs/FR-0057-dispatcher-control-plane-hardening.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "ai-hub-poc",
+      "fr_id": "FR-0058",
+      "title": "Orchestrator Defers to the Dispatcher Pipeline",
+      "status": "merged",
+      "owner": "architect",
+      "tags": [
+        "orchestration",
+        "agent-roles",
+        "developer-experience"
+      ],
+      "depends_on": [
+        "FR-0057"
+      ],
+      "derived_from": null,
+      "pattern": null,
+      "created": "2026-08-05",
+      "updated": "2026-08-12",
+      "rel_path": "projects/ai-hub-poc/specs/FR-0058-orchestrator-defers-to-dispatcher.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "ai-hub-poc",
+      "fr_id": "FR-0059",
+      "title": "Windows-Safe Console Output for agent-status",
+      "status": "merged",
+      "owner": "architect",
+      "tags": [
+        "tooling",
+        "cross-platform",
+        "developer-experience"
+      ],
+      "depends_on": [],
+      "derived_from": null,
+      "pattern": null,
+      "created": "2026-08-05",
+      "updated": "2026-08-18",
+      "rel_path": "projects/ai-hub-poc/specs/FR-0059-windows-safe-agent-status-output.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "ai-hub-poc",
+      "fr_id": "FR-0060",
+      "title": "Passive Webhook Path Delivery Guarantee \u2014 Propagate Downstream Failure Instead of Silently Returning 204",
+      "status": "merged",
+      "owner": "architect",
+      "tags": [
+        "webhook",
+        "reliability",
+        "delivery-guarantee",
+        "real-time"
+      ],
+      "depends_on": [
+        "FR-0053",
+        "FR-0056"
+      ],
+      "derived_from": null,
+      "pattern": null,
+      "created": "2026-08-05",
+      "updated": "2026-08-13",
+      "rel_path": "projects/ai-hub-poc/specs/FR-0060-passive-path-delivery-guarantee.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "ai-hub-poc",
+      "fr_id": "FR-0061",
+      "title": "Dispatcher Rework Loop \u2014 Re-dispatch the Developer on a Request-Changes Verdict",
+      "status": "merged",
+      "owner": "architect",
+      "tags": [
+        "orchestration",
+        "dispatcher",
+        "tooling",
+        "developer-experience"
+      ],
+      "depends_on": [
+        "FR-0057"
+      ],
+      "derived_from": null,
+      "pattern": null,
+      "created": "2026-08-05",
+      "updated": "2026-08-19",
+      "rel_path": "projects/ai-hub-poc/specs/FR-0061-dispatcher-rework-loop.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "ai-hub-poc",
+      "fr_id": "FR-0062",
+      "title": "Reviewer Verdict Contract \u2014 Recordable Verdicts and Assertion-Verified Fix Locations",
+      "status": "merged",
+      "owner": "architect",
+      "tags": [
+        "agent-roles",
+        "reviewer",
+        "developer-experience",
+        "orchestration"
+      ],
+      "depends_on": [],
+      "derived_from": null,
+      "pattern": null,
+      "created": "2026-08-05",
+      "updated": "2026-08-05",
+      "rel_path": "projects/ai-hub-poc/specs/FR-0062-reviewer-verdict-contract.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "ai-hub-poc",
+      "fr_id": "FR-0063",
+      "title": "Fathom Live Envelope Conformance \u2014 Svix Signing, Explicit Subscription-Scoped Identity, and Verified Container Health",
+      "status": "merged",
+      "owner": "architect",
+      "tags": [
+        "ingestion",
+        "webhook",
+        "fathom",
+        "live-integration",
+        "attribution",
+        "reliability"
+      ],
+      "depends_on": [
+        "FR-0053",
+        "FR-0056",
+        "FR-0060"
+      ],
+      "derived_from": null,
+      "pattern": null,
+      "created": "2026-08-05",
+      "updated": "2026-08-19",
+      "rel_path": "projects/ai-hub-poc/specs/FR-0063-fathom-live-envelope-conformance.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "ai-hub-poc",
+      "fr_id": "FR-0064",
+      "title": "Review Task Field Completion \u2014 Expose resolve_stakeholder and edit_attributes in the Task Detail Card",
+      "status": "merged",
+      "owner": "architect",
+      "tags": [
+        "human-review",
+        "hitl",
+        "web",
+        "data-completion",
+        "layer-4"
+      ],
+      "depends_on": [
+        "FR-0017",
+        "FR-0018",
+        "FR-0024",
+        "FR-0032"
+      ],
+      "derived_from": null,
+      "pattern": null,
+      "created": "2026-08-05",
+      "updated": "2026-08-07",
+      "rel_path": "projects/ai-hub-poc/specs/FR-0064-review-task-field-completion.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "ai-hub-poc",
+      "fr_id": "FR-0065",
+      "title": "List-Valued Edge Derivation \u2014 DECIDED_BY, COMMITTED_BY, and COMMITTED_TO Are Never Written",
+      "status": "merged",
+      "owner": "architect",
+      "tags": [
+        "knowledge-graph",
+        "projection",
+        "bug",
+        "layer-4",
+        "edge-derivation"
+      ],
+      "depends_on": [
+        "FR-0010"
+      ],
+      "derived_from": null,
+      "pattern": null,
+      "created": "2026-08-05",
+      "updated": "2026-08-13",
+      "rel_path": "projects/ai-hub-poc/specs/FR-0065-list-valued-edge-derivation.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "ai-hub-poc",
+      "fr_id": "FR-0066",
+      "title": "Human-Authored Entity Creation \u2014 create_entity Review Action and the human_entry Evidence Kind",
+      "status": "merged",
+      "owner": "architect",
+      "tags": [
+        "human-review",
+        "hitl",
+        "knowledge-graph",
+        "provenance",
+        "layer-4"
+      ],
+      "depends_on": [
+        "FR-0007",
+        "FR-0010",
+        "FR-0016",
+        "FR-0017",
+        "FR-0018",
+        "FR-0065"
+      ],
+      "derived_from": null,
+      "pattern": null,
+      "created": "2026-08-05",
+      "updated": "2026-08-18",
+      "rel_path": "projects/ai-hub-poc/specs/FR-0066-human-authored-entity-creation.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "ai-hub-poc",
+      "fr_id": "FR-0067",
+      "title": "Human-Authored Relationships \u2014 Edge Reconciliation on Attribute Edits and the Manual Graph-Edit UI",
+      "status": "merged",
+      "owner": "architect",
+      "tags": [
+        "human-review",
+        "hitl",
+        "knowledge-graph",
+        "web",
+        "layer-4",
+        "edge-derivation"
+      ],
+      "depends_on": [
+        "FR-0064",
+        "FR-0065",
+        "FR-0066"
+      ],
+      "derived_from": null,
+      "pattern": null,
+      "created": "2026-08-05",
+      "updated": "2026-08-31",
+      "rel_path": "projects/ai-hub-poc/specs/FR-0067-human-authored-relationships.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "ai-hub-poc",
+      "fr_id": "FR-0068",
+      "title": "Evidence Provenance and Source Deep-Linking",
+      "status": "merged",
+      "owner": "architect",
+      "tags": [
+        "provenance",
+        "deep-linking",
+        "review",
+        "traceability",
+        "layer-3",
+        "layer-4",
+        "web"
+      ],
+      "depends_on": [
+        "FR-0009",
+        "FR-0010",
+        "FR-0024",
+        "FR-0030"
+      ],
+      "derived_from": null,
+      "pattern": null,
+      "created": "2026-08-05",
+      "updated": "2026-08-05",
+      "rel_path": "projects/ai-hub-poc/specs/FR-0068-evidence-provenance-deep-linking.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "ai-hub-poc",
+      "fr_id": "FR-0069",
+      "title": "Finalize Hardening \u2014 Staged-Work Commit, Empty-Branch Refusal, and Push-Time Footprint Verification",
+      "status": "merged",
+      "owner": "architect",
+      "tags": [
+        "orchestration",
+        "dispatcher",
+        "tooling",
+        "developer-experience"
+      ],
+      "depends_on": [
+        "FR-0057"
+      ],
+      "derived_from": null,
+      "pattern": null,
+      "created": "2026-08-06",
+      "updated": "2026-08-07",
+      "rel_path": "projects/ai-hub-poc/specs/FR-0069-finalize-staged-work-and-footprint-verification.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "ai-hub-poc",
+      "fr_id": "FR-0070",
+      "title": "KB Query MCP Server Resource Guardrails (Bounded, Read-Only, Timeout-Capped Reads)",
+      "status": "merged",
+      "owner": "architect",
+      "tags": [
+        "mcp",
+        "layer-4",
+        "reliability",
+        "resource-limits"
+      ],
+      "depends_on": [
+        "FR-0046"
+      ],
+      "derived_from": null,
+      "pattern": null,
+      "created": "2026-08-11",
+      "updated": "2026-08-18",
+      "rel_path": "projects/ai-hub-poc/specs/FR-0070-mcp-query-guardrails.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "ai-hub-poc",
+      "fr_id": "FR-0071",
+      "title": "P0 Prompt Hardening for Untrusted Ingestion Content (Delimiting + Data-Not-Instructions Framing)",
+      "status": "merged",
+      "owner": "architect",
+      "tags": [
+        "security",
+        "prompt-injection",
+        "extraction",
+        "ingestion"
+      ],
+      "depends_on": [
+        "FR-0009"
+      ],
+      "derived_from": null,
+      "pattern": null,
+      "created": "2026-08-11",
+      "updated": "2026-08-18",
+      "rel_path": "projects/ai-hub-poc/specs/FR-0071-prompt-injection-hardening-untrusted-ingestion.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "ai-hub-poc",
+      "fr_id": "FR-0072",
+      "title": "Gated Untrusted-Source Hardening (Provenance, Confidence Cap, MCP + Slack Surface Neutralisation)",
+      "status": "merged",
+      "owner": "architect",
+      "tags": [
+        "security",
+        "prompt-injection",
+        "extraction",
+        "ingestion"
+      ],
+      "depends_on": [
+        "FR-0009",
+        "FR-0010",
+        "FR-0044",
+        "FR-0046",
+        "FR-0019",
+        "FR-0071"
+      ],
+      "derived_from": null,
+      "pattern": null,
+      "created": "2026-08-12",
+      "updated": "2026-08-18",
+      "rel_path": "projects/ai-hub-poc/specs/FR-0072-gated-untrusted-source-hardening.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "ai-hub-poc",
+      "fr_id": "FR-0073",
+      "title": "Branch Footprint Verification \u2014 Every Changed File Inside the Claimed FRs' `owns:`, Enforced in CI",
+      "status": "merged",
+      "owner": "architect",
+      "tags": [
+        "governance",
+        "dispatch",
+        "quality-gate",
+        "ci",
+        "traceability"
+      ],
+      "depends_on": [
+        "FR-0011",
+        "FR-0057",
+        "FR-0069"
+      ],
+      "derived_from": null,
+      "pattern": null,
+      "created": "2026-08-12",
+      "updated": "2026-08-19",
+      "rel_path": "projects/ai-hub-poc/specs/FR-0073-branch-footprint-verification.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "ai-hub-poc",
+      "fr_id": "FR-0074",
+      "title": "Artifact URI Credential Containment \u2014 Reject Credential-Bearing `artifact_ref.uri` at the Contract Boundary and Stop the Git Adapter Emitting One",
+      "status": "merged",
+      "owner": "architect",
+      "tags": [
+        "security",
+        "credentials",
+        "ingestion",
+        "event-contract",
+        "self-ingestion"
+      ],
+      "depends_on": [
+        "FR-0001",
+        "FR-0003",
+        "FR-0005",
+        "FR-0043"
+      ],
+      "derived_from": null,
+      "pattern": null,
+      "created": "2026-08-12",
+      "updated": "2026-08-20",
+      "rel_path": "projects/ai-hub-poc/specs/FR-0074-artifact-uri-credential-containment.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "ai-hub-poc",
+      "fr_id": "FR-0075",
+      "title": "Migrate the Fathom Proxy (upload.py) and dev/web Extras from httpx to httpx2",
+      "status": "draft",
+      "owner": "architect",
+      "tags": [
+        "dependency",
+        "migration",
+        "http-client",
+        "sdk-upgrade",
+        "web",
+        "fathom"
+      ],
+      "depends_on": [],
+      "derived_from": null,
+      "pattern": null,
+      "created": "2026-08-13",
+      "updated": "2026-08-13",
+      "rel_path": "projects/ai-hub-poc/specs/FR-0075-migrate-httpx-to-httpx2.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "ai-hub-poc",
+      "fr_id": "FR-0076",
+      "title": "Dependency-Declaration Hygiene \u2014 Detect Extras That Diverge From What Their Code Imports",
+      "status": "ready",
+      "owner": "architect",
+      "tags": [
+        "dependency-hygiene",
+        "packaging",
+        "ci",
+        "quality-gate",
+        "tooling"
+      ],
+      "depends_on": [],
+      "derived_from": null,
+      "pattern": null,
+      "created": "2026-08-13",
+      "updated": "2026-08-13",
+      "rel_path": "projects/ai-hub-poc/specs/FR-0076-dependency-declaration-hygiene.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "ai-hub-poc",
+      "fr_id": "FR-0077",
+      "title": "Dispatcher scopes the Claude Code --model per role, with a per-role env override",
+      "status": "merged",
+      "owner": "architect",
+      "tags": [
+        "dispatcher",
+        "workflow",
+        "claude-code",
+        "model-selection"
+      ],
+      "depends_on": [],
+      "derived_from": null,
+      "pattern": null,
+      "created": "2026-08-20",
+      "updated": "2026-08-20",
+      "rel_path": "projects/ai-hub-poc/specs/FR-0077-dispatch-per-role-model-scoping.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "ai-hub-poc",
+      "fr_id": "FR-0078",
+      "title": "Docs role, non-blocking FINDINGS channel, and handoff artifacts (Lockstep forward-port)",
+      "status": "merged",
+      "owner": "architect",
+      "tags": [
+        "lockstep",
+        "docs",
+        "dispatch",
+        "control-plane",
+        "maintainer"
+      ],
+      "depends_on": [],
+      "derived_from": null,
+      "pattern": null,
+      "created": "2026-09-01",
+      "updated": "2026-09-04",
+      "rel_path": "projects/ai-hub-poc/specs/FR-0078-docs-role-findings-handoff.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "ai-hub-poc",
+      "fr_id": "FR-0079",
+      "title": "Client-doc renderer + doc-spec scaffold (Lockstep forward-port)",
+      "status": "ready",
+      "owner": "architect",
+      "tags": [
+        "lockstep",
+        "docs",
+        "renderer",
+        "maintainer"
+      ],
+      "depends_on": [],
+      "derived_from": null,
+      "pattern": null,
+      "created": "2026-09-01",
+      "updated": "2026-09-01",
+      "rel_path": "projects/ai-hub-poc/specs/FR-0079-client-doc-renderer.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "ai-hub-poc",
+      "fr_id": "FR-0080",
+      "title": "Per-AC ratification state + drift lint (Lockstep forward-port)",
+      "status": "ready",
+      "owner": "architect",
+      "tags": [
+        "lockstep",
+        "specs",
+        "ratification",
+        "indexer",
+        "maintainer"
+      ],
+      "depends_on": [],
+      "derived_from": null,
+      "pattern": null,
+      "created": "2026-09-01",
+      "updated": "2026-09-01",
+      "rel_path": "projects/ai-hub-poc/specs/FR-0080-ac-ratification-lint.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "ai-hub-poc",
+      "fr_id": "FR-0081",
+      "title": "Repair the mnt pipeline \u2014 owned-specs write-through, own-FR test narrowing, and the rev review path for maintainer PRs",
+      "status": "merged",
+      "owner": "architect",
+      "tags": [
+        "dispatch",
+        "control-plane",
+        "maintainer",
+        "review"
+      ],
+      "depends_on": [],
+      "derived_from": null,
+      "pattern": null,
+      "created": "2026-09-04",
+      "updated": "2026-09-04",
+      "rel_path": "projects/ai-hub-poc/specs/FR-0081-mnt-pipeline-permission-and-review-repair.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "ai-hub-poc",
+      "fr_id": "FR-0082",
+      "title": "Maintainer doc \u2014 an owned generated command file is a regeneration step, not a footprint escalation",
+      "status": "merged",
+      "owner": "architect",
+      "tags": [
+        "maintainer",
+        "control-plane",
+        "docs"
+      ],
+      "depends_on": [],
+      "derived_from": null,
+      "pattern": null,
+      "created": "2026-09-04",
+      "updated": "2026-09-04",
+      "rel_path": "projects/ai-hub-poc/specs/FR-0082-maintainer-doc-generated-command-regeneration.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "pm-graph-poc",
+      "fr_id": "FR-0001",
+      "title": "ExtractionEvent Contract",
+      "status": "implementing",
+      "owner": "",
+      "tags": [],
+      "depends_on": [],
+      "derived_from": null,
+      "pattern": null,
+      "created": "",
+      "updated": "",
+      "rel_path": "ac-pmi-main/pm-graph-poc/specs/FR-0001-extraction-event-contract.md",
+      "branch": "main",
+      "committed": false,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "pm-graph-poc",
+      "fr_id": "FR-0002",
+      "title": "Deterministic Event ID Hashing",
+      "status": "implementing",
+      "owner": "",
+      "tags": [],
+      "depends_on": [
+        "FR-0001"
+      ],
+      "derived_from": null,
+      "pattern": null,
+      "created": "",
+      "updated": "",
+      "rel_path": "ac-pmi-main/pm-graph-poc/specs/FR-0002-deterministic-event-id.md",
+      "branch": "main",
+      "committed": false,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "pm-graph-poc",
+      "fr_id": "FR-0003",
+      "title": "Schema and Extractor Versioning Policy",
+      "status": "implementing",
+      "owner": "",
+      "tags": [],
+      "depends_on": [
+        "FR-0001"
+      ],
+      "derived_from": null,
+      "pattern": null,
+      "created": "",
+      "updated": "",
+      "rel_path": "ac-pmi-main/pm-graph-poc/specs/FR-0003-versioning-policy.md",
+      "branch": "main",
+      "committed": false,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "pm-graph-poc",
+      "fr_id": "FR-0004",
+      "title": "TranscriptAdapter Protocol + Synthetic Adapter",
+      "status": "implementing",
+      "owner": "",
+      "tags": [],
+      "depends_on": [],
+      "derived_from": null,
+      "pattern": null,
+      "created": "",
+      "updated": "",
+      "rel_path": "ac-pmi-main/pm-graph-poc/specs/FR-0004-transcript-adapter.md",
+      "branch": "main",
+      "committed": false,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "pm-graph-poc",
+      "fr_id": "FR-0005",
+      "title": "Decision Extraction",
+      "status": "implementing",
+      "owner": "",
+      "tags": [],
+      "depends_on": [
+        "FR-0001",
+        "FR-0002",
+        "FR-0004",
+        "FR-0007"
+      ],
+      "derived_from": null,
+      "pattern": null,
+      "created": "",
+      "updated": "",
+      "rel_path": "ac-pmi-main/pm-graph-poc/specs/FR-0005-decision-extraction.md",
+      "branch": "main",
+      "committed": false,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "pm-graph-poc",
+      "fr_id": "FR-0006",
+      "title": "Commitment Extraction with Unit Normalization",
+      "status": "implementing",
+      "owner": "",
+      "tags": [],
+      "depends_on": [
+        "FR-0001",
+        "FR-0002",
+        "FR-0004",
+        "FR-0005",
+        "FR-0007",
+        "FR-0014"
+      ],
+      "derived_from": null,
+      "pattern": null,
+      "created": "",
+      "updated": "",
+      "rel_path": "ac-pmi-main/pm-graph-poc/specs/FR-0006-commitment-extraction.md",
+      "branch": "main",
+      "committed": false,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "pm-graph-poc",
+      "fr_id": "FR-0007",
+      "title": "Reference Taxonomy",
+      "status": "implementing",
+      "owner": "",
+      "tags": [],
+      "depends_on": [
+        "FR-0001"
+      ],
+      "derived_from": null,
+      "pattern": null,
+      "created": "",
+      "updated": "",
+      "rel_path": "ac-pmi-main/pm-graph-poc/specs/FR-0007-reference-taxonomy.md",
+      "branch": "main",
+      "committed": false,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "pm-graph-poc",
+      "fr_id": "FR-0008",
+      "title": "Tiered Reference Resolver",
+      "status": "implementing",
+      "owner": "",
+      "tags": [],
+      "depends_on": [
+        "FR-0007",
+        "FR-0014"
+      ],
+      "derived_from": null,
+      "pattern": null,
+      "created": "",
+      "updated": "",
+      "rel_path": "ac-pmi-main/pm-graph-poc/specs/FR-0008-tiered-resolver.md",
+      "branch": "main",
+      "committed": false,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "pm-graph-poc",
+      "fr_id": "FR-0009",
+      "title": "UnresolvedReference Edge + CSV Review Queue",
+      "status": "implementing",
+      "owner": "",
+      "tags": [],
+      "depends_on": [
+        "FR-0008",
+        "FR-0010"
+      ],
+      "derived_from": null,
+      "pattern": null,
+      "created": "",
+      "updated": "",
+      "rel_path": "ac-pmi-main/pm-graph-poc/specs/FR-0009-unresolved-reference-queue.md",
+      "branch": "main",
+      "committed": false,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "pm-graph-poc",
+      "fr_id": "FR-0010",
+      "title": "Cypher MERGE Projectors with Confidence Gating",
+      "status": "implementing",
+      "owner": "",
+      "tags": [],
+      "depends_on": [
+        "FR-0001",
+        "FR-0002",
+        "FR-0003",
+        "FR-0008"
+      ],
+      "derived_from": null,
+      "pattern": null,
+      "created": "",
+      "updated": "",
+      "rel_path": "ac-pmi-main/pm-graph-poc/specs/FR-0010-cypher-projectors.md",
+      "branch": "main",
+      "committed": false,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "pm-graph-poc",
+      "fr_id": "FR-0011",
+      "title": "Provenance Edge Projection",
+      "status": "implementing",
+      "owner": "",
+      "tags": [],
+      "depends_on": [
+        "FR-0010"
+      ],
+      "derived_from": null,
+      "pattern": null,
+      "created": "",
+      "updated": "",
+      "rel_path": "ac-pmi-main/pm-graph-poc/specs/FR-0011-provenance-projection.md",
+      "branch": "main",
+      "committed": false,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "pm-graph-poc",
+      "fr_id": "FR-0012",
+      "title": "Meeting / Transcript / Utterance Projection",
+      "status": "implementing",
+      "owner": "",
+      "tags": [],
+      "depends_on": [
+        "FR-0004",
+        "FR-0010"
+      ],
+      "derived_from": null,
+      "pattern": null,
+      "created": "",
+      "updated": "",
+      "rel_path": "ac-pmi-main/pm-graph-poc/specs/FR-0012-structural-projection.md",
+      "branch": "main",
+      "committed": false,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "pm-graph-poc",
+      "fr_id": "FR-0013",
+      "title": "Bottleneck Detection and Alert Emission",
+      "status": "implementing",
+      "owner": "",
+      "tags": [],
+      "depends_on": [
+        "FR-0010",
+        "FR-0011",
+        "FR-0014"
+      ],
+      "derived_from": null,
+      "pattern": null,
+      "created": "",
+      "updated": "",
+      "rel_path": "ac-pmi-main/pm-graph-poc/specs/FR-0013-bottleneck-detection.md",
+      "branch": "main",
+      "committed": false,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "pm-graph-poc",
+      "fr_id": "FR-0014",
+      "title": "Seed Ontology Loader",
+      "status": "implementing",
+      "owner": "",
+      "tags": [],
+      "depends_on": [],
+      "derived_from": null,
+      "pattern": null,
+      "created": "",
+      "updated": "",
+      "rel_path": "ac-pmi-main/pm-graph-poc/specs/FR-0014-seed-ontology.md",
+      "branch": "main",
+      "committed": false,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "pm-graph-poc",
+      "fr_id": "FR-0015",
+      "title": "Local Development Stack (Docker Compose)",
+      "status": "implementing",
+      "owner": "",
+      "tags": [],
+      "depends_on": [],
+      "derived_from": null,
+      "pattern": null,
+      "created": "",
+      "updated": "",
+      "rel_path": "ac-pmi-main/pm-graph-poc/specs/FR-0015-docker-compose.md",
+      "branch": "main",
+      "committed": false,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "pm-graph-poc",
+      "fr_id": "FR-0016",
+      "title": "Golden Transcript Fixtures + Extraction Eval Harness",
+      "status": "implementing",
+      "owner": "",
+      "tags": [],
+      "depends_on": [
+        "FR-0004",
+        "FR-0005",
+        "FR-0006",
+        "FR-0013",
+        "FR-0018",
+        "FR-0019"
+      ],
+      "derived_from": null,
+      "pattern": null,
+      "created": "",
+      "updated": "",
+      "rel_path": "ac-pmi-main/pm-graph-poc/specs/FR-0016-eval-harness.md",
+      "branch": "main",
+      "committed": false,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "pm-graph-poc",
+      "fr_id": "FR-0017",
+      "title": "Spec Indexer and Deploy Gate",
+      "status": "implementing",
+      "owner": "",
+      "tags": [],
+      "depends_on": [],
+      "derived_from": null,
+      "pattern": null,
+      "created": "",
+      "updated": "",
+      "rel_path": "ac-pmi-main/pm-graph-poc/specs/FR-0017-indexer-deploy-gate.md",
+      "branch": "main",
+      "committed": false,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "pm-graph-poc",
+      "fr_id": "FR-0018",
+      "title": "Risk Extraction with Intra-Transcript Mitigation",
+      "status": "implementing",
+      "owner": "",
+      "tags": [],
+      "depends_on": [
+        "FR-0001",
+        "FR-0002",
+        "FR-0004",
+        "FR-0005",
+        "FR-0007",
+        "FR-0010"
+      ],
+      "derived_from": null,
+      "pattern": null,
+      "created": "",
+      "updated": "",
+      "rel_path": "ac-pmi-main/pm-graph-poc/specs/FR-0018-risk-extraction.md",
+      "branch": "main",
+      "committed": false,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "pm-graph-poc",
+      "fr_id": "FR-0019",
+      "title": "ActionItem Extraction",
+      "status": "implementing",
+      "owner": "",
+      "tags": [],
+      "depends_on": [
+        "FR-0001",
+        "FR-0002",
+        "FR-0004",
+        "FR-0005",
+        "FR-0007",
+        "FR-0010"
+      ],
+      "derived_from": null,
+      "pattern": null,
+      "created": "",
+      "updated": "",
+      "rel_path": "ac-pmi-main/pm-graph-poc/specs/FR-0019-action-item-extraction.md",
+      "branch": "main",
+      "committed": false,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "hub-tooling",
+      "fr_id": "FR-0001",
+      "title": "Profile-aware `bootstrap.py --upgrade` and append-only project registration",
+      "status": "merged",
+      "owner": "architect",
+      "tags": [
+        "bootstrap",
+        "profiles",
+        "template",
+        "tooling"
+      ],
+      "depends_on": [],
+      "derived_from": null,
+      "pattern": null,
+      "created": "2026-09-07",
+      "updated": "2026-09-07",
+      "rel_path": "projects/hub-tooling/specs/FR-0001-profile-aware-upgrade.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "hub-tooling",
+      "fr_id": "FR-0002",
+      "title": "Pipeline instrumentation \u2014 append-only per-project metrics log (H6)",
+      "status": "merged",
+      "owner": "architect",
+      "tags": [
+        "observability",
+        "template",
+        "dispatch",
+        "metrics"
+      ],
+      "depends_on": [],
+      "derived_from": "IDEA-0016",
+      "pattern": null,
+      "created": "2026-09-07",
+      "updated": "2026-09-25",
+      "rel_path": "projects/hub-tooling/specs/FR-0002-pipeline-instrumentation-metrics-log.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "hub-tooling",
+      "fr_id": "FR-0003",
+      "title": "Versioned spec objects \u2014 shared versioning block, FR solution-space fields, ADR deviation sections, and the revision-vs-supersession rule",
+      "status": "merged",
+      "owner": "architect",
+      "tags": [
+        "schema",
+        "template",
+        "indexer",
+        "decision-rights",
+        "versioning"
+      ],
+      "depends_on": [],
+      "derived_from": null,
+      "pattern": null,
+      "created": "2026-09-07",
+      "updated": "2026-09-07",
+      "rel_path": "projects/hub-tooling/specs/FR-0003-versioned-spec-objects.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "hub-tooling",
+      "fr_id": "FR-0004",
+      "title": "Decision (DEC) and Technical Requirement (TR) object types \u2014 templates, indexer discovery and parse, cross-object resolution",
+      "status": "merged",
+      "owner": "architect",
+      "tags": [
+        "schema",
+        "template",
+        "indexer",
+        "decision-rights",
+        "versioning"
+      ],
+      "depends_on": [
+        "FR-0003"
+      ],
+      "derived_from": null,
+      "pattern": null,
+      "created": "2026-09-07",
+      "updated": "2026-09-07",
+      "rel_path": "projects/hub-tooling/specs/FR-0004-dec-and-tr-object-types.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "hub-tooling",
+      "fr_id": "FR-0005",
+      "title": "Supersession-aware indexer \u2014 live-only query surface, reachable-subgraph (slice) query, and retired/provisional views in INDEX.md (H2)",
+      "status": "merged",
+      "owner": "architect",
+      "tags": [
+        "indexer",
+        "template",
+        "decision-rights",
+        "versioning"
+      ],
+      "depends_on": [
+        "FR-0003",
+        "FR-0004"
+      ],
+      "derived_from": null,
+      "pattern": null,
+      "created": "2026-09-07",
+      "updated": "2026-09-07",
+      "rel_path": "projects/hub-tooling/specs/FR-0005-supersession-aware-indexer.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "hub-tooling",
+      "fr_id": "FR-0006",
+      "title": "Dispatcher owns the commit, refuses empty finalization, materialises REVIEW.md, and keeps role branches in sync across rework rounds",
+      "status": "merged",
+      "owner": "architect",
+      "tags": [
+        "dispatch",
+        "harness",
+        "control-plane",
+        "template"
+      ],
+      "depends_on": [],
+      "derived_from": "IDEA-0029",
+      "pattern": null,
+      "created": "2026-09-13",
+      "updated": "2026-09-26",
+      "rel_path": "projects/hub-tooling/specs/FR-0006-dispatcher-owns-commit-and-rework-sync.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "hub-tooling",
+      "fr_id": "FR-0007",
+      "title": "Generated spec artifacts are written with LF line endings on every platform",
+      "status": "merged",
+      "owner": "architect",
+      "tags": [
+        "template",
+        "windows",
+        "cross-platform",
+        "indexer"
+      ],
+      "depends_on": [],
+      "derived_from": null,
+      "pattern": null,
+      "created": "2026-09-13",
+      "updated": "2026-09-13",
+      "rel_path": "projects/hub-tooling/specs/FR-0007-lf-normalised-generated-artifacts.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "hub-tooling",
+      "fr_id": "FR-0008",
+      "title": "Declared gates \u2014 an FR names its pre-review / pre-merge gates in frontmatter, the dispatcher enforces them at phase boundaries, and the deploy gate checks the evidence",
+      "status": "merged",
+      "owner": "architect",
+      "tags": [
+        "dispatch",
+        "gate",
+        "deploy-gate",
+        "indexer",
+        "control-plane",
+        "template",
+        "decision-rights"
+      ],
+      "depends_on": [
+        "FR-0006"
+      ],
+      "derived_from": null,
+      "pattern": null,
+      "created": "2026-09-13",
+      "updated": "2026-09-22",
+      "rel_path": "projects/hub-tooling/specs/FR-0008-declared-gates-honoured-by-dispatcher.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "hub-tooling",
+      "fr_id": "FR-0009",
+      "title": "Developer worktree permissions derive from the FR's `owns:` footprint \u2014 the maintainer derivation, generalised to `dev`",
+      "status": "merged",
+      "owner": "architect",
+      "tags": [
+        "dispatch",
+        "harness",
+        "control-plane",
+        "footprint",
+        "template"
+      ],
+      "depends_on": [],
+      "derived_from": null,
+      "pattern": null,
+      "created": "2026-09-20",
+      "updated": "2026-09-21",
+      "rel_path": "projects/hub-tooling/specs/FR-0009-developer-permissions-derive-from-owns.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "hub-tooling",
+      "fr_id": "FR-0010",
+      "title": "Stack-aware Bash grants, `owns:`-derived write grants for `rev`/`bkf`, and a dispatch venv provisioned from the project's lock",
+      "status": "merged",
+      "owner": "architect",
+      "tags": [
+        "dispatch",
+        "harness",
+        "control-plane",
+        "footprint",
+        "stack",
+        "template"
+      ],
+      "depends_on": [
+        "FR-0009"
+      ],
+      "derived_from": "IDEA-0065",
+      "pattern": null,
+      "created": "2026-09-20",
+      "updated": "2026-09-25",
+      "rel_path": "projects/hub-tooling/specs/FR-0010-stack-aware-grants-and-lock-provisioned-venv.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "hub-tooling",
+      "fr_id": "FR-0011",
+      "title": "Stack-aware environment pre-flight \u2014 `wave`, `tick` and `maintain` check the host before spawning and classify what they find",
+      "status": "merged",
+      "owner": "architect",
+      "tags": [
+        "dispatch",
+        "preflight",
+        "environment",
+        "windows",
+        "orchestrator",
+        "template"
+      ],
+      "depends_on": [
+        "FR-0010"
+      ],
+      "derived_from": "IDEA-0068",
+      "pattern": null,
+      "created": "2026-09-20",
+      "updated": "2026-09-21",
+      "rel_path": "projects/hub-tooling/specs/FR-0011-stack-aware-environment-preflight.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "hub-tooling",
+      "fr_id": "FR-0012",
+      "title": "Headless conduct contract in the generated role commands \u2014 one canonical block, restated review contract, regenerated wrappers",
+      "status": "merged",
+      "owner": "architect",
+      "tags": [
+        "dispatch",
+        "agent-team",
+        "commands",
+        "headless",
+        "control-plane",
+        "template"
+      ],
+      "depends_on": [],
+      "derived_from": "IDEA-0066",
+      "pattern": null,
+      "created": "2026-09-20",
+      "updated": "2026-09-25",
+      "rel_path": "projects/hub-tooling/specs/FR-0012-headless-conduct-contract-in-role-commands.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "hub-tooling",
+      "fr_id": "FR-0013",
+      "title": "Post-approve and Reviewer-artifact lifecycle \u2014 approve fast-forwards and pushes, the Reviewer's own REVIEW.md survives, verdicts are declarable, and the footprint check stops refusing approved work",
+      "status": "merged",
+      "owner": "architect",
+      "tags": [
+        "dispatch",
+        "control-plane",
+        "finalize",
+        "rework",
+        "template"
+      ],
+      "depends_on": [
+        "FR-0006",
+        "FR-0011",
+        "FR-0014"
+      ],
+      "derived_from": "IDEA-0067",
+      "pattern": null,
+      "created": "2026-09-20",
+      "updated": "2026-09-26",
+      "rel_path": "projects/hub-tooling/specs/FR-0013-post-approve-and-reviewer-artifact-lifecycle.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "hub-tooling",
+      "fr_id": "FR-0014",
+      "title": "Wave rev-finalize regression \u2014 both rev-leg `cmd_finalize` call sites pass `draft`, a signature-faithful regression test covers Phase 6 and the rework rev leg, a wave crash is visible (non-zero exit, traceback in the log, synthesis still written), and stdout flushes per phase",
+      "status": "merged",
+      "owner": "architect",
+      "tags": [
+        "dispatch",
+        "control-plane",
+        "finalize",
+        "rework",
+        "observability",
+        "template"
+      ],
+      "depends_on": [
+        "FR-0006"
+      ],
+      "derived_from": null,
+      "pattern": null,
+      "created": "2026-09-21",
+      "updated": "2026-09-21",
+      "rel_path": "projects/hub-tooling/specs/FR-0014-wave-rev-finalize-regression-and-crash-visibility.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "hub-tooling",
+      "fr_id": "FR-0015",
+      "title": "Control-plane paths are refused at finalize whoever wrote them \u2014 no Reviewer-provenance exemption, no uncommitted tampering, no rewritten permission file \u2014 and a malformed `owns:` is refused for every role that derives grants from it",
+      "status": "merged",
+      "owner": "architect",
+      "tags": [
+        "dispatch",
+        "control-plane",
+        "footprint",
+        "finalize",
+        "security",
+        "template"
+      ],
+      "depends_on": [
+        "FR-0006",
+        "FR-0009",
+        "FR-0010",
+        "FR-0013"
+      ],
+      "derived_from": "IDEA-0083",
+      "pattern": null,
+      "created": "2026-09-25",
+      "updated": "2026-09-25",
+      "rel_path": "projects/hub-tooling/specs/FR-0015-control-plane-paths-refused-at-finalize.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "hub-tooling",
+      "fr_id": "FR-0016",
+      "title": "Windows text I/O hardening in the dispatcher scripts \u2014 every text-mode subprocess read decodes UTF-8 with replacement, `_git_capture` never reports an undecoded capture as success, Python children the dispatcher reads emit UTF-8, and committed files the dispatcher writes are LF",
+      "status": "merged",
+      "owner": "architect",
+      "tags": [
+        "windows",
+        "encoding",
+        "cross-platform",
+        "dispatch",
+        "template"
+      ],
+      "depends_on": [],
+      "derived_from": "IDEA-0028",
+      "pattern": null,
+      "created": "2026-09-25",
+      "updated": "2026-09-25",
+      "rel_path": "projects/hub-tooling/specs/FR-0016-windows-text-io-hardening-in-dispatcher-scripts.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "hub-tooling",
+      "fr_id": "FR-0017",
+      "title": "Stack detection finds a node manifest one directory below the primary checkout's root (`frontend/package.json`), so every role in such a project is granted node, npm and npx exactly as a root manifest grants them",
+      "status": "merged",
+      "owner": "architect",
+      "tags": [
+        "dispatch",
+        "stack",
+        "control-plane",
+        "template"
+      ],
+      "depends_on": [],
+      "derived_from": "IDEA-0078",
+      "pattern": null,
+      "created": "2026-09-25",
+      "updated": "2026-09-25",
+      "rel_path": "projects/hub-tooling/specs/FR-0017-stack-detection-finds-nested-node-manifests.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "hub-tooling",
+      "fr_id": "FR-0018",
+      "title": "Merge friction removed at the source: an agent's gate rows land in the primary checkout's log instead of its branch, and revalidate resolves a `specs/INDEX.md` conflict mechanically (the `REVIEW.md` halves moved to FR-0025, DEC-0025)",
+      "status": "ready",
+      "owner": "architect",
+      "tags": [
+        "dispatch",
+        "finalize",
+        "metrics",
+        "branch-lifecycle",
+        "template"
+      ],
+      "depends_on": [
+        "FR-0016",
+        "FR-0025"
+      ],
+      "derived_from": "IDEA-0079",
+      "pattern": null,
+      "created": "2026-09-25",
+      "updated": "2026-09-26",
+      "rel_path": "projects/hub-tooling/specs/FR-0018-merge-friction-metrics-rows-index-and-review-md.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "hub-tooling",
+      "fr_id": "FR-0019",
+      "title": "Hub-side writers emit LF on every platform, and each command source declares its own wrapper frontmatter \u2014 `COMMAND_META` is retired",
+      "status": "merged",
+      "owner": "architect",
+      "tags": [
+        "hub-scripts",
+        "line-endings",
+        "commands",
+        "bootstrap",
+        "template",
+        "windows"
+      ],
+      "depends_on": [],
+      "derived_from": "IDEA-0063",
+      "pattern": null,
+      "created": "2026-09-25",
+      "updated": "2026-09-25",
+      "rel_path": "projects/hub-tooling/specs/FR-0019-hub-writers-lf-and-per-command-frontmatter.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "hub-tooling",
+      "fr_id": "FR-0020",
+      "title": "`--upgrade` stops clobbering project-specialised files: `pytest.ini` is seeded not synced, stack-injected files are rendered for the project's stack, added files carry a provenance reminder, and `.gitattributes` gains a managed LF block that never overwrites the project's own rules",
+      "status": "merged",
+      "owner": "architect",
+      "tags": [
+        "bootstrap",
+        "upgrade",
+        "hub-scripts",
+        "line-endings",
+        "provenance",
+        "template"
+      ],
+      "depends_on": [
+        "FR-0019"
+      ],
+      "derived_from": "IDEA-0080",
+      "pattern": null,
+      "created": "2026-09-25",
+      "updated": "2026-09-25",
+      "rel_path": "projects/hub-tooling/specs/FR-0020-upgrade-preserves-project-files-and-syncs-gitattributes-block.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "hub-tooling",
+      "fr_id": "FR-0021",
+      "title": "The deploy gate fails, before writing anything, on every spec-graph error the indexer refuses \u2014 DEC, TR and cross-object errors included \u2014 and its PASSED line states what it checked and that it ran no tests",
+      "status": "merged",
+      "owner": "architect",
+      "tags": [
+        "gate",
+        "deploy-gate",
+        "indexer",
+        "quality-gate",
+        "template"
+      ],
+      "depends_on": [],
+      "derived_from": "IDEA-0081",
+      "pattern": null,
+      "created": "2026-09-25",
+      "updated": "2026-09-25",
+      "rel_path": "projects/hub-tooling/specs/FR-0021-deploy-gate-states-scope-and-fails-on-indexer-errors.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "hub-tooling",
+      "fr_id": "FR-0022",
+      "title": "Wave-1 craft rules become default behaviour in the role commands, the Reviewer is asked for its own REVIEW.md instead of forbidden to write one, and the DEC template names the cost of widening a pinned set",
+      "status": "merged",
+      "owner": "architect",
+      "tags": [
+        "agent-team",
+        "commands",
+        "reviewer",
+        "testing",
+        "decision-rights",
+        "template"
+      ],
+      "depends_on": [
+        "FR-0019"
+      ],
+      "derived_from": "IDEA-0082",
+      "pattern": null,
+      "created": "2026-09-25",
+      "updated": "2026-09-25",
+      "rel_path": "projects/hub-tooling/specs/FR-0022-wave1-craft-rules-in-role-commands.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "hub-tooling",
+      "fr_id": "FR-0023",
+      "title": "A project declares its layout \u2014 name, footprint root, gate source and test directories \u2014 in `.agent-team/layout.yaml`; the footprint checker and the deploy gate honour it, project-qualified `# covers <project>` annotations count for their own project, and hub CI runs the template and hub suites",
+      "status": "ready",
+      "owner": "architect",
+      "tags": [
+        "gate",
+        "deploy-gate",
+        "footprint",
+        "monorepo",
+        "template",
+        "tooling"
+      ],
+      "depends_on": [
+        "FR-0016",
+        "FR-0021"
+      ],
+      "derived_from": "IDEA-0061",
+      "pattern": null,
+      "created": "2026-09-25",
+      "updated": "2026-09-25",
+      "rel_path": "projects/hub-tooling/specs/FR-0023-project-layout-footprint-root-and-gate-dirs.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "hub-tooling",
+      "fr_id": "FR-0024",
+      "title": "The dispatcher works for a project in a subdirectory of its repository \u2014 agents start in the project directory inside a whole-repo worktree, branch reads and git-returned paths are prefix-correct, and a repo-rooted footprint becomes absolute permission grants \u2014 with byte-identical behaviour when the project is the repository",
+      "status": "ready",
+      "owner": "architect",
+      "tags": [
+        "dispatch",
+        "harness",
+        "control-plane",
+        "footprint",
+        "monorepo",
+        "template"
+      ],
+      "depends_on": [
+        "FR-0023",
+        "FR-0018"
+      ],
+      "derived_from": "IDEA-0061",
+      "pattern": null,
+      "created": "2026-09-25",
+      "updated": "2026-09-26",
+      "rel_path": "projects/hub-tooling/specs/FR-0024-subdirectory-aware-dispatcher.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "hub-tooling",
+      "fr_id": "FR-0025",
+      "title": "Reviews are filed per FR and per round under `specs/_reviews/`: the root `REVIEW.md` stays the Reviewer's handoff but never lands on a branch, so review files stop conflicting and another FR's review is never read as this one's",
+      "status": "ready",
+      "owner": "architect",
+      "tags": [
+        "dispatch",
+        "finalize",
+        "reviewer",
+        "branch-lifecycle",
+        "template"
+      ],
+      "depends_on": [
+        "FR-0016"
+      ],
+      "derived_from": null,
+      "pattern": null,
+      "created": "2026-09-26",
+      "updated": "2026-09-26",
+      "rel_path": "projects/hub-tooling/specs/FR-0025-reviews-filed-per-fr-and-round-under-specs-reviews.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    },
+    {
+      "project": "hub-tooling",
+      "fr_id": "FR-0026",
+      "title": "An AC recorded in `ac_state` as `deferred`, `withdrawn` or `superseded`, with a pointer to where its work went, is exempt from the deploy gate's coverage check but stays a valid `@covers` target, and the indexer lists every open deferral",
+      "status": "ready",
+      "owner": "architect",
+      "tags": [
+        "gate",
+        "deploy-gate",
+        "indexer",
+        "spec-graph",
+        "template"
+      ],
+      "depends_on": [],
+      "derived_from": "IDEA-0035",
+      "pattern": null,
+      "created": "2026-10-26",
+      "updated": "2026-10-30",
+      "rel_path": "projects/hub-tooling/specs/FR-0026-deferred-withdrawn-and-superseded-acs-exempt-from-coverage.md",
+      "branch": "main",
+      "committed": true,
+      "ahead_of_main": false,
+      "worktree_path": null
+    }
+  ]
+}

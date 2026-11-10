@@ -1,0 +1,48 @@
+# Project layout for the spec indexer, the footprint checker and the deploy gate.
+#
+# Optional. Most projects never need it: with no `.agent-team/layout.yaml`
+# every script behaves exactly as if this file held only the defaults below.
+# Read by `scripts/project_layout.py` (the one reader); a malformed file
+# fails `scripts/deploy-gate.py` under `spec-validation` before it writes
+# anything.
+#
+# To enable:
+#   1. Copy this file to `.agent-team/layout.yaml` (without `.example`)
+#   2. Keep only the keys you need to change; every key is optional
+#
+# The template ships only this example, so `bootstrap.py --upgrade` never
+# creates or overwrites a project's `layout.yaml`. It lives under
+# `.agent-team/`, which agents may not edit, so an agent cannot change what its
+# own gate scans.
+#
+# Directory entries follow the same rules as FR `owns:` entries: POSIX
+# forward slashes, no absolute path, no `..` segment, no backslash. They
+# resolve against the footprint root.
+
+# project_name: lowercase letters, digits and `-`, starting with a letter or
+# digit. When set, the gate also counts `# covers <project_name> FR-NNNN:AC-N`
+# exactly like `@covers FR-NNNN:AC-N`. That ride-along form is for tests that
+# travel into other projects (where a bare `@covers` would name an unknown FR);
+# a qualified annotation naming any other project is ignored.
+# Default: unset (qualified annotations are ignored).
+# project_name: my-project
+
+# footprint_root: `project` or `repo`.
+#   project — FR `owns:`/`reads:` entries and the gate directories below are
+#             relative to this project's root.
+#   repo    — they are relative to the top of the git repository the project
+#             lives in (`git rev-parse --show-toplevel`). For a project in a
+#             subdirectory of a larger repository whose FRs change files
+#             outside that subdirectory.
+# Default: project
+# footprint_root: project
+
+# gate: the directories the deploy gate scans, relative to the footprint root.
+# Each list, when given, must be non-empty. A missing directory is skipped.
+#   source_dirs — scanned for `@implements FR-NNNN` tags. Default: [src]
+#   test_dirs   — scanned for `@covers` annotations. Default: [tests]
+# Do not list `scripts/`: it holds the template's team scripts, whose
+# `@implements` tags name the template's own FRs, not this project's.
+# gate:
+#   source_dirs: [src]
+#   test_dirs: [tests]

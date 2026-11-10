@@ -1,0 +1,5 @@
+# Compliance profiles applied to this project (written by scripts/bootstrap.py).
+# `bootstrap.py --upgrade` reads this file to sync profile-owned files from the
+# hub's profiles/<name>/ instead of the template. To backfill or change it:
+#   python scripts/bootstrap.py --upgrade <project-path> --profile <name>
+profiles: []

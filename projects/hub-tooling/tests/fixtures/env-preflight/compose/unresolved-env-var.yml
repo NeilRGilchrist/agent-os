@@ -1,0 +1,5 @@
+services:
+  db:
+    image: synthetic/postgres:latest
+    ports:
+      - "${DB_PORT_NO_DEFAULT}:5432"
